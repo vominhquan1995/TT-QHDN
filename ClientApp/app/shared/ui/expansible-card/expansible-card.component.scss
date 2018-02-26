@@ -1,0 +1,9 @@
+.app-card-container {
+    border-radius: 0 0 20px 20px;
+    .app-card {
+        padding: 16px;
+        display: block;
+        overflow: hidden;
+        background: var(--light);
+    }
+}

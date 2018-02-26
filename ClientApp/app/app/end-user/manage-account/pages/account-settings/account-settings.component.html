@@ -1,0 +1,224 @@
+<div *ngIf="accountForm">
+  <div class="col-12 hures-account-settings-form">
+    <h3 class="text-left m-2">Cài đặt</h3>
+    <form [formGroup]="accountForm">
+      <!-- sinhvien -->
+      <div class="p-2">
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Tên đăng nhập:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p>{{ accountForm.controls.username.value }}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Mật khẩu:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</p>
+          </div>
+          <div class="col-12 col-md-4">
+            <a style="color: dodgerblue" (click)="changePassword()">Thay đổi</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Email:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p>{{ accountForm.controls.email.value }}</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Họ và tên:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isEdit">{{ accountForm.controls.fullName?.value }}</p>
+            <input *ngIf="isEdit" class="input-group" type="text" formControlName="fullName">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Lớp:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isEdit">{{ accountForm.controls.class?.value }}</p>
+            <input *ngIf="isEdit" class="input-group" type="text" formControlName="class">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Ngày sinh:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isEdit">{{ accountForm.controls.dateOfBirth?.value | date:'dd/MM/yyyy' }}</p>
+            <admin-date-picker *ngIf="isEdit" [currentValue]="accountForm.controls.dateOfBirth?.value" (timeChange)="timeChange($event)"></admin-date-picker>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Giới tính:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isEdit">{{ accountForm.controls.sex?.value?'Nam':'Nữ'}}</p>
+            <admin-sex-select *ngIf="isEdit" [valueDefault]="accountForm.controls.sex.value" (sexSelected)="sexChanged($event)"></admin-sex-select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Địa chỉ:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isEdit">{{ accountForm.controls.address?.value}}</p>
+            <input *ngIf="isEdit" class="input-group" type="text" formControlName="address">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Số điện thoại:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isEdit">{{ accountForm.controls.phoneNumber?.value}}</p>
+            <input *ngIf="isEdit" class="input-group" type="text" formControlName="phoneNumber">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Ảnh đại diện</strong>
+          </div>
+          <div class="col-12 col-md-8">
+            <p *ngIf="!isEdit">
+              <img [src]="accountForm.controls.avatar?.value" class="avatar" alt="Ảnh đại diện">
+            </p>
+            <admin-upload-file *ngIf="isEdit" (uploadSuccess)="avatarChanged($event)" [url]="accountForm.controls.avatar?.value"></admin-upload-file>
+          </div>
+        </div>
+      </div>
+    </form>
+    <button *ngIf="!isEdit" class="hures-btn col-12 col-md-4" rippleEffect (click)="isEdit=!isEdit">Chỉnh sửa</button>
+    <button *ngIf="isEdit" class="hures-btn col-12 col-md-4" rippleEffect (click)="update()">Cập nhật</button>
+    <hr>
+    <h3 *ngIf="!accountForm.controls.company.value" class="text-left m-2">Hồ sơ công việc</h3>
+    <div *ngIf="!accountForm.controls.company.value">
+      <form [formGroup]="cvForm" class="p-2">
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Vị trí:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isUpdateCV">{{ cvForm.controls.position?.value==''?'Chưa có':cvForm.controls.position?.value}}</p>
+            <input *ngIf="isUpdateCV" class="input-group" type="text" formControlName="position">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Địa điểm:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isUpdateCV">{{ cvForm.controls.place?.value==''?'Chưa có':cvForm.controls.place?.value}}</p>
+            <input *ngIf="isUpdateCV" class="input-group" type="text" formControlName="place">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Cấp độ:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isUpdateCV">{{ cvForm.controls.level?.value==''?'Chưa có':cvForm.controls.level?.value}}</p>
+            <input *ngIf="isUpdateCV" class="input-group" type="text" formControlName="level">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Kinh nghiệm:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isUpdateCV">{{ cvForm.controls.experience?.value==''?'Chưa có':cvForm.controls.experience?.value}}</p>
+            <input *ngIf="isUpdateCV" class="input-group" type="text" formControlName="experience">
+          </div>
+        </div>
+      </form>
+      <button *ngIf="!isUpdateCV" class="hures-btn col-12 col-md-4" rippleEffect (click)="isUpdateCV=!isUpdateCV">Chỉnh sửa</button>
+      <button *ngIf="isUpdateCV" class="hures-btn col-12 col-md-4" rippleEffect (click)="updateCV()">Cập nhật</button>
+    </div>
+
+    <h3 *ngIf="accountForm.controls.company.value" class="text-left">Thông tin doanh nghiệp</h3>
+    <div *ngIf="accountForm.controls.company.value" class="p-2">
+      <!-- doanhnghiep -->
+      <form [formGroup]="companyForm">
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Doanh nghiệp:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.name?.value }}</p>
+            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="name">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Tên viết tắt:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.shortName?.value }}</p>
+            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="shortName">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Địa chỉ:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.address?.value }}</p>
+            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="address">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Số điện thoại:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.phoneNumber?.value }}</p>
+            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="phoneNumber">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Website:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.website?.value }}</p>
+            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="website">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Quy mô:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.scales?.value }}</p>
+            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="scales">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Giám đốc:</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.representor?.value }}</p>
+            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="representor">
+          </div>
+        </div>
+      </form>
+      <button *ngIf="!isCompanyUpdate" class="hures-btn col-12 col-md-4" rippleEffect (click)="isCompanyUpdate=!isCompanyUpdate">Chỉnh sửa</button>
+      <button *ngIf="isCompanyUpdate" class="hures-btn col-12 col-md-4" rippleEffect (click)="updateCompnay()">Cập nhật</button>
+    </div>
+
+  </div>
+</div>
+
+<hure-change-password *ngIf="isChangePwd" (onSubmit)="onChangePwdSubmit($event)"></hure-change-password>

@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Trung tâm QHDN HUTECH";
+}
+
+<app asp-prerender-module="ClientApp/dist/main-server">Loading...</app>
+
+<script src="~/dist/vendor.js" asp-append-version="true"></script>
+@section scripts {
+    <script src="~/dist/main-client.js" asp-append-version="true"></script>
+}
+@section css {
+    <link rel="icon" type="image/x-icon" href="~/img/favicon.ico">
+    <link rel="stylesheet" href="style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/dist/vendor.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/dist/stylesheets/main.css" asp-append-version="true"/>
+    <script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
+}

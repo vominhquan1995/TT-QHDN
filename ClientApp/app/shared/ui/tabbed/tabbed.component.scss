@@ -1,0 +1,26 @@
+a {
+    cursor: pointer
+}
+a.active{
+    color: #AA00FF
+}
+.tabbed{
+    overflow: auto;
+}
+.tabbed::-webkit-scrollbar-track
+{
+    border-radius: 2px;
+    background-color: #F5F5F5;
+}
+
+.tabbed::-webkit-scrollbar
+{
+    width: 4px;
+    background-color: #F5F5F5;
+}
+
+.tabbed::-webkit-scrollbar-thumb
+{
+    border-radius: 2px;
+    background-color: rgb(184, 184, 184);
+}

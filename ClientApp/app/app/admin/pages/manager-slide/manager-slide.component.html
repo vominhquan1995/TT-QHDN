@@ -1,0 +1,64 @@
+<div class="card mb-3" [@routerTransition]>
+    <div class="card-header">Danh sách slide</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn-admin btn-primary" (click)="openCreateUser()">Thêm slide</button>
+            </div>
+        </div>
+        <br>
+        <div *ngIf="!isLoading">
+            <div class="view-total">
+                Tổng cộng {{totalItem}} dòng được tìm thấy
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Tiêu đề cha</th>
+                            <th>Tiêu đề con</th>
+                            <th>Thứ tự</th>
+                            <th>Ảnh</th>
+                            <th>Hiển thị</th>
+                            <th colspan="2" class="text-nowrap">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="_data">
+                        <tr *ngFor="let item of _data;let i =index">
+                            <td class="cell-sm">{{i+1}}</td>
+                            <td class="cell-sm"> {{item?.titleParent}}</td>
+                            <td class="cell-sm"> {{item?.titleChild}}</td>
+                            <td class="cell-sm">{{item?.index}}</td>
+                            <td>
+                                <img class="image" [src]="item?.imageURL">
+                            </td>
+                            <td class="text-center">
+                                <span>
+                                <i [class.fa-check]="item?.isShow" class="fa"></i>
+                            </span>
+                            </td>
+                            <td class="tac-vu">
+                                <a (click)="openEdit(item.id)" placement="top" ngbTooltip="Sửa thông tin">
+                                    <i class=" fa fa-pencil-square-o " aria-hidden="true "></i>
+                                </a>
+                            </td>
+                            <td class="tac-vu">
+                                <a (click)="showConfirmDelete(item.id)" placement="top" ngbTooltip="Xóa">
+                                    <i class="fa fa-times " aria-hidden="true "></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="_data.length==0">
+                            <td colspan="5" class="text-center">Không có dữ liệu</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <admin-loading [isLoader]="isLoading"></admin-loading>
+    </div>
+
+</div>
+<create-slide (submitData)="getData() "></create-slide>
+<edit-slide (submitData)="getData()"></edit-slide>

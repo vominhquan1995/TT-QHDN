@@ -1,0 +1,33 @@
+.modal {
+    display: block !important;
+    z-index: 9999999;
+    .modal-dialog {
+        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    }
+    .modal-dialog .modal-content {
+        border-radius: 2px;
+        .btn{
+            background: transparent;
+            border: 0;
+            color: #007bff;
+        }
+        .btn:active{
+            background:rgba($color:  #000000, $alpha: 0.1);
+            border: 0;
+            color: #007bff;
+            box-shadow: 0;
+        }
+    }
+}
+
+.overlay {
+    background: #000000;
+    height: 100%;
+    width: 100%;
+    opacity: 0.4;
+    top: 0;
+    left: 0;
+    position: absolute;
+    padding: 0;
+    transition: opacity .5s;
+}

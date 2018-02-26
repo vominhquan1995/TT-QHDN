@@ -1,0 +1,55 @@
+<ng-template #content let-c="close" let-d="dismiss" size="lg">
+    <div class="modal-header">
+        <h4 class="modal-title">Chỉnh Sửa Thông Tin</h4>
+        <button type="button" class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form role="form" #createForm="ngForm" (ngSubmit)="create(createForm)" ngNativeValidate>
+            <div class="form-group has-success">
+                <label class="form-control-label" for="Name">Tên sự kiện</label>
+                <input type="text" ngModel name="Name" class="form-control form-control-success" id="Name" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Title">Tiêu đề</label>
+                <input type="text" ngModel name="Title" class="form-control form-control-warning" id="Title" maxlength="20" required>
+                <label>Dưới 20 kí tự. Ví dụ: Hội thảo, Sự Kiện...</label>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="ShortDescription">Mô tả</label>
+                <textarea ngModel name="ShortDescription" class="form-control form-control-warning" id="ShortDescription" required></textarea>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="description">Nội dung</label>
+                <admin-ckeditor (valueChanged)="contentHtmlChange($event)"></admin-ckeditor>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Place">Địa điểm</label>
+                <input type="text" ngModel name="Place" class="form-control form-control-warning" id="Place" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="LinkRegister">Đường dẫn đăng kí</label>
+                <input type="text" ngModel name="LinkRegister" class="form-control form-control-warning" id="LinkRegister" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label">Hình ảnh</label>
+                <admin-upload-file (uploadSuccess)="ImageURL=$event"></admin-upload-file>
+            </div>
+            <div class="form-group has-danger">
+                <label class="form-control-label">Ngày bắt đầu</label>
+                <admin-date-picker (timeChange)="timeStart=$event"></admin-date-picker>
+            </div>
+            <div class="form-group has-danger">
+                <label class="form-control-label">Ngày kết thúc</label>
+                <admin-date-picker (timeChange)="timeEnd=$event"></admin-date-picker>
+            </div>
+            <hr>
+            <ngb-alert [type]="error.type" (close)="error.mess =''" *ngIf="error.mess != ''">{{ error.mess }}</ngb-alert>
+            <div class="modal-footer">
+                <button type="submit" class="btn-admin btn-primary">Lưu</button>
+                <button type="button" class="btn-admin btn-secondary" (click)="close()">Quay lại</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

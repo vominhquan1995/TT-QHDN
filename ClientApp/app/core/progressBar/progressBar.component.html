@@ -1,0 +1,4 @@
+<div [@progressBarChanged] *ngIf="isActivated" class="progress" style="height: 4px;">
+    <div [@progressing] class="progress-bar" [class.progress-bar-striped]="percent !== 100" [class.progress-bar-animated]="percent !== 100" 
+    role="progressbar"  [style.width.%]="percent" style="transition: all .5s ease-in-out;" aria-valuemax="100"></div>
+  </div>

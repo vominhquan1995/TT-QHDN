@@ -1,0 +1,6 @@
+<div class="card app-card-container" >
+    <div [@expandChanged]="isExpanded" class="card-body app-card">
+        <ng-content></ng-content>
+    </div>
+    <button class="text-capitalize" (click)="isExpanded=!isExpanded" rippleEffect> {{ isExpanded?'Collapse':'See more' }}</button>
+</div>

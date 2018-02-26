@@ -1,0 +1,74 @@
+<div *ngIf="jobs$ | async; let jobs; else waiting">
+    <a class="btn btn-hure" (click)="openCreate()">
+        <span>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </span>
+        <span>
+            <strong>Thêm tin tuyển dụng</strong>
+        </span>
+    </a>
+    <div class="text-center">
+        <h3>Các tin tuyển dụng đã đăng</h3>
+    </div>
+    <div class="d-flex flex-column">
+        <ul class="list-group">
+            <li *ngFor="let job of jobs | paginate: { itemsPerPage: limit, currentPage: page } ;let i=index" class="list-group-item disabled">
+                <div class="row">
+                    <div class="col-md-10">
+                        <div>{{i+1}}-
+                            <strong>{{job?.title| limitText:80}}</strong>
+                            (Có {{job?.applys.length}} ứng viên)
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <span class="badge" [ngClass]=" (job.status==spending) ? 'badge-warning' : 'badge-success'">{{ (job.status==spending) ? 'Chờ duyệt' : 'Đã duyệt' }}</span>
+                    </div>
+                </div>
+                <div>
+                    <a class="btn btn-hure" (click)="openEdit(job.id)">
+                        <span>
+                            <i class="fa fa-edit" aria-hidden="true"></i>
+                        </span>
+                        <span>
+                            <strong>Sửa</strong>
+                        </span>
+                    </a>
+                    <a class="btn btn-hure" (click)="goToReview(job.id)" *ngIf="!(job.status==spending)">
+                        <span>
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </span>
+                        <span>
+                            <strong>Xem</strong>
+                        </span>
+                    </a>
+                    <a class="btn btn-hure" (click)="goToCvs(job.id)" *ngIf="!(job.status==spending)">
+                        <span>
+                            <i class="fa fa-address-card-o" aria-hidden="true"></i>
+                        </span>
+                        <span>
+                            <strong>Hồ sơ</strong>
+                        </span>
+                    </a>
+                    <a class="btn btn-hure" (click)="deleteJob(job.id)">
+                        <span>
+                            <i class="fa fa-remove" aria-hidden="true"></i>
+                        </span>
+                        <span>
+                            <strong>Xóa</strong>
+                        </span>
+                    </a>
+                </div>
+            </li>
+            <div *ngIf="jobs.length==0" class="text-center">Không có tin tuyển dụng nào</div>
+        </ul>
+        <div class="has-text-centered">
+            <pagination-controls (pageChange)="page = $event" autoHide="true" previousLabel="Trước" nextLabel="Sau"></pagination-controls>
+        </div>
+    </div>
+</div>
+<br>
+<ng-template #waiting style="vertical-align: middle">
+    <hure-waiter></hure-waiter>
+</ng-template>
+<modal-create-job (submitData)="getJobsAsync()"></modal-create-job>
+<modal-edit-job (submitData)="getJobsAsync()"></modal-edit-job>

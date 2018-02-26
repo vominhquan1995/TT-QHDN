@@ -1,0 +1,58 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <!-- <h5 class="modal-title">Thông Tin Ứng Viên</h5> -->
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <h5>Tiến trình</h5>
+            <progress-bar-apply [currentValue]="itemApply?.status"></progress-bar-apply>
+        </div>
+        <h5>Thông tin cá nhân</h5>
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td>Họ và tên : {{model.fullName}} </td>
+                    <td>
+                        <img [src]="model.avatar" class="avatar" alt="Ảnh đại diện">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Lớp : {{model.class}}</td>
+                    <td>Khoa : {{model.department}}</td>
+                </tr>
+                <tr>
+                    <td>Email : {{model.email}}</td>
+                    <td>Số điện thoại : {{model.phoneNumber}}</td>
+                </tr>
+                <tr>
+                    <td>Ngày sinh : {{model.dateOfBirth | date : 'dd/MM/yyyy'}}</td>
+                    <td>Giới tính : {{ model.sex ? 'Nam' : 'Nữ'}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Địa chỉ : {{model.address}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <h5>Thông tin xin việc</h5>
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td>Kinh nghiệm làm việc : {{model.cv?.experience}} </td>
+                </tr>
+                <tr>
+                    <td>Trình độ chuyên môn : {{model.cv?.level}}</td>
+                </tr>
+                <tr>
+                    <td>Địa điểm làm việc mong muốn : {{model.cv?.place}}</td>
+                </tr>
+                <tr>
+                    <td>Vị trí tìm việc : {{model.cv?.position}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-template>

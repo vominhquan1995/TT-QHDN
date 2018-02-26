@@ -1,0 +1,19 @@
+@import "~styles/variables";
+.hures-manage-account-list {
+    .list-group {
+        .list-group-item {
+            border-radius: 0 !important;
+            border: 0;
+            a{
+                text-decoration:none; 
+                cursor:pointer;  
+            }
+        }
+        .active {
+            background: $main-color;
+            div {
+                color: white;
+            }
+        }
+    }
+}

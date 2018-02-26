@@ -1,0 +1,13 @@
+<div class="hures-popover-container align-middle">
+    <div (click)="change()" class="hures-popover-button">
+        <ng-content select="[button]" >
+    
+        </ng-content>
+    </div>
+    <div [@menuChanged]="state" class="popover bs-popover-bottom bs-popover-bottom-docs app-popover" #popover 
+    (clickOutside)="closeIt()">
+        <div class="popover-body">
+            <ng-content select="[popover]"></ng-content>
+        </div>
+    </div>
+</div>

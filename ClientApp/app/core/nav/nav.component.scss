@@ -1,0 +1,162 @@
+@import "~styles/variables";
+.hures-main-head {
+    border: 1px solid #CCCCCC;
+    background: white;
+    width: 100%;
+    z-index: $zindex-nav;
+    position: fixed;
+    top: 0;
+    padding: 20px !important;
+    .col-lg-10 {
+        display: inline-block;
+        float: none;
+        margin: 0 -4px 0 0;
+        position: static;
+        vertical-align: middle;
+    }
+    .hures-nav-toggle {
+        border-radius: 0;
+        padding: 8px;
+        border: 0;
+        background: $main-color !important;
+        color: white;
+        span {
+            color: white;
+        }
+    }
+    .hures-logo {
+        display: flex;
+        justify-content: space-between;
+    }
+    .hures-nav-menu {
+        padding: 0;
+        ul {
+            width: 100%;
+            justify-content: space-evenly;
+            li {
+                a {
+                    font-size: $font-size-nav;
+                    text-decoration-line: none;
+                    text-align: left;
+                }
+                a.active {
+                    color: $main-color !important;
+                }
+                div.hures-login-joinus {
+                    margin-top: .2rem;
+                    ul {
+                        padding-left: 4px;
+                        li {
+                            padding: 0.2rem;
+                        }
+                        .hures-login {
+                            color: $main-color;
+                            font-size: $font-size-nav;
+                            display: inline-block;
+                            cursor: pointer;
+                            border-radius: 2px;
+                            padding-right:1rem;
+                        }
+                        .hures-signup {
+                            background: $main-color;
+                            border-radius: 4px;
+                            font-size: $font-size-nav;
+                            display: inline-block;
+                            color: white;
+                            cursor: pointer;
+                            border-radius: 2px;
+                            padding-left:5px;
+                            padding-right:5px;
+                        }
+                    }
+                }
+                div.hures-login-joinus-user {
+                    margin-top: .2rem;
+                    .hures-login-joinus-user-ul {
+                        position: relative;
+                        padding-left: 4px;
+                        li {
+                            padding: 0.2rem;
+                           
+                        }
+                        .hures-login {
+                            color: $main-color;
+                            font-size: 12px;
+                            display: inline-block;
+                            cursor: pointer;
+                            border-radius: 2px;
+                            position: absolute;
+                            top:-7px;
+                            ul{
+                                li{
+                                    &:hover{
+                                        background: var(--light);
+                                    }
+                                }
+                            }
+                        }
+                        .hures-signup {
+                            position: absolute;
+                            background: $main-color;
+                            border-radius: 4px;
+                            font-size: 12px;
+                            display: inline-block;
+                            color: white;
+                            cursor: pointer;
+                            border-radius: 2px;
+                            left: 40px;
+                            top:0;
+                            padding-left:5px;
+                            padding-right:5px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 992px){
+    .hures-nav-menu {
+  
+        ul {
+          
+            li {
+                a {
+               
+                }
+                a.active {
+                }
+                div.hures-login-joinus {
+                    width:150px !important;
+                    margin:auto;
+                    ul {
+                        text-align: center;
+                        li {
+
+                        }
+                        .hures-login {
+                        }
+                        .hures-signup {
+
+                        }
+                    }
+                }
+                div.hures-login-joinus-user {
+                    width:100px !important;
+                    margin:auto;
+                    .hures-login-joinus-user-ul {
+                        
+                        li {
+     
+                        }
+                        .hures-login {
+                        }
+                        .hures-signup {
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

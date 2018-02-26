@@ -1,0 +1,127 @@
+<form [formGroup]="signUpForm" class="d-flex flex-column">
+  <ng-container *ngIf="state=='PICK_TYPE'">
+    <div class="input-group" [class.invalid]="signUpForm.controls.roleId.value=='0'">
+      <span class="input-group-addon">
+        <i class="fa fa-users"></i>
+      </span>
+      <hure-dropdown (change)="roleChange($event)" class="w-100" placeholder="Bạn là...">
+        <ng-container *ngIf="roles$|async; let roles">
+          <hure-dropdown-item *ngFor="let item of roles" [text]="item.description" [value]="item.id"></hure-dropdown-item>
+        </ng-container>
+      </hure-dropdown>
+    </div>
+    <button type="submit" rippleEffect [disabled]="signUpForm.controls.roleId.invalid" (click)="nextStep()" class="hures-search-btn"
+      rippleEffect>Tiếp
+      <i class="fa fa-chevron-right"></i>
+    </button>
+  </ng-container>
+  <ng-container *ngIf="state=='COMPANY_INFO'">
+    <div class="input-group" [class.invalid]="signUpForm.controls.companyName.invalid">
+      <span class="input-group-addon">
+        <i class="fa fa-building"></i>
+      </span>
+      <input type="text" formControlName="companyName" placeholder="Tên Doanh nghiệp" autofocus>
+    </div>
+    <div class="input-group" [class.invalid]="signUpForm.controls.companyWebsite.invalid">
+      <span class="input-group-addon">
+        <i class="fa fa-share"></i>
+      </span>
+      <input type="text" formControlName="companyWebsite" placeholder="Website của Doanh nghiệp">
+    </div>
+    <div class="input-group" [class.invalid]="signUpForm.controls.companyEmail.invalid">
+      <span class="input-group-addon">
+        <i class="fa fa-envelope"></i>
+      </span>
+      <input type="text" formControlName="companyEmail" placeholder="Email của Doanh nghiệp">
+    </div>
+    <div class="input-group" [class.invalid]="signUpForm.controls.taxCode.invalid">
+      <span class="input-group-addon">
+        <i class="fa fa-qrcode"></i>
+      </span>
+      <input type="text" formControlName="taxCode" placeholder="Mã số thuế của Doanh nghiệp">
+    </div>
+    <div class="input-group" [class.invalid]="signUpForm.controls.companyAddress.invalid">
+      <span class="input-group-addon">
+        <i class="fa fa-qrcode"></i>
+      </span>
+      <input type="text" formControlName="companyAddress" placeholder="Địa chỉ Doanh nghiệp">
+    </div>
+    <div class="input-group" [class.invalid]="signUpForm.controls.companyPhone.invalid">
+      <span class="input-group-addon">
+        <i class="fa fa-qrcode"></i>
+      </span>
+      <input type="text" formControlName="companyPhone" placeholder="Số điện thoại Doanh nghiệp">
+    </div>
+    <textarea [class.invalid]="signUpForm.controls.companyDescription.invalid" class="form-control" style="outline:0; border-radius:0;" formControlName="companyDescription" placeholder="Mô tả"></textarea>  
+    <button type="submit" rippleEffect (click)="nextStep()" class="hures-search-btn" rippleEffect>Bước tiếp theo
+      <i class="fa fa-chevron-right"></i>
+    </button>
+  </ng-container>
+  <ng-container *ngIf="state=='USER_INFO'">
+    <div class="input-group" [class.invalid]="signUpForm.controls.fullName.invalid">
+      <span class="input-group-addon">
+        <i class="fa fa-user"></i>
+      </span>
+      <input type="text" formControlName="fullName" placeholder="Họ và tên" autofocus>
+    </div>
+    <div *ngIf="step[1]!=1" class="input-group" [class.invalid]="signUpForm.controls.mssv.invalid">
+      <span class="input-group-addon">
+        <i class="fa fa-user"></i>
+      </span>
+      <input type="text" formControlName="mssv" placeholder="Mã số sinh viên">
+    </div>
+    <small *ngIf="step[1]!=1 && signUpForm.controls.mssv.invalid">MSSV không hợp lệ</small>
+    <div class="input-group" [class.invalid]="signUpForm.controls.email.invalid">
+      <span class="input-group-addon">
+        <i class="fa fa-user"></i>
+      </span>
+      <input type="text" formControlName="email" placeholder="Địa chỉ email của bạn">
+    </div>
+    <small *ngIf="signUpForm.controls.email.invalid">Địa chỉ email không hợp lệ</small>
+    <div class="input-group" [class.invalid]="signUpForm.controls.username.invalid">
+      <span class="input-group-addon">
+        <i class="fa fa-user"></i>
+      </span>
+      <input type="text" formControlName="username" placeholder="Tên đăng nhập">
+    </div>
+    <small *ngIf="signUpForm.controls.username.invalid">Tên đăng nhập quá ngắn</small>
+    <div class="input-group" [class.invalid]="signUpForm.controls.password.invalid">
+      <span class="input-group-addon">
+        <i class="fa fa-lock"></i>
+      </span>
+      <input type="password" formControlName="password" placeholder="Mật khẩu">
+    </div>
+    <small class="form-text text-muted" *ngIf="signUpForm.controls.password.invalid">
+      Mật khẩu phải lớn hơn 10 kí tự
+    </small>
+    <div class="input-group" [class.invalid]="signUpForm.controls.password2.value!=signUpForm.controls.password.value">
+      <span class="input-group-addon">
+        <i class="fa fa-lock"></i>
+      </span>
+      <input type="password" formControlName="password2" placeholder="Xác nhận mật khẩu">
+    </div>
+    <small class="form-text text-muted" *ngIf="signUpForm.controls.password2.value!=signUpForm.controls.password.value">
+      Xác nhận mật khẩu không khớp
+    </small>
+    <button type="submit" rippleEffect [disabled]="signUpForm.controls.email.invalid||signUpForm.controls.username.invalid||signUpForm.controls.password2.value!=signUpForm.controls.password.value"
+      (click)="nextStep()" class="hures-search-btn" rippleEffect>Bước tiếp theo
+      <i class="fa fa-chevron-right"></i>
+    </button>
+  </ng-container>
+  <ng-container *ngIf="state=='FINISH'">
+    <!-- SHOW INFO TO RECHECK -->
+    <div class="d-flex flex-column">
+      <h3>Thông tin đăng kí</h3>
+      <small>Tên tài khoản</small>
+      <h5> {{ signUpForm.controls.username.value }}</h5>
+      <small>Email</small>
+      <h5>{{signUpForm.controls.email.value}}</h5>
+      <small *ngIf="step[1]==1">Tên Doanh nghiệp</small>
+      <h5 *ngIf="step[1]==1">{{ signUpForm.controls.companyName.value}}</h5>
+      <small *ngIf="step[1]==1">Tên website</small>
+      <h5 *ngIf="step[1]==1">Website Doanh nghiệp: {{ signUpForm.controls.companyWebsite.value}}</h5>
+      <small>Bấm hoàn thành nếu không có gì sai</small>
+    </div>
+    <button type="submit" (click)="finish()" class="hures-search-btn" rippleEffect>Hoàn thành</button>
+  </ng-container>
+</form>

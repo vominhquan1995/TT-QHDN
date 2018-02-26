@@ -1,0 +1,20 @@
+.hures-popover-container {
+    position: relative;
+    .popover{
+        border-radius: 0 !important;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+    .hures-popover-button{
+        width: 32px;
+        height: 32px;
+        img{
+            height: 32px;
+            width: 32px;
+        }
+    }
+    .app-popover {
+        position: absolute;
+        min-width: 10rem;
+        left: 99999999999px;
+    }
+}

@@ -1,0 +1,65 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Tạo Doanh Nghiệp Mới</h4>
+        <button type="button" class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form role="form" #formCreate="ngForm" (ngSubmit)="create(formCreate)" ngNativeValidate>
+            <div class="form-group has-success">
+                <label class="form-control-label" for="name">Tên doanh nghiệp</label>
+                <input type="text" ngModel name="name" class="form-control form-control-success" id="name" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="shortName">Tên viết tắt </label>
+                <input type="text" ngModel name="shortName" class="form-control form-control-warning" id="shortName" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Address">Địa chỉ</label>
+                <input type="text" ngModel name="Address" class="form-control form-control-warning" id="Address" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Scales">Quy mô</label>
+                <input type="text" ngModel name="Scales" class="form-control form-control-warning" id="Scales" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Representor">Người đại diện</label>
+                <input type="text" ngModel name="Representor" class="form-control form-control-warning" id="Representor" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="PhoneNumber">Số điện thoại (Người đại diện/Doanh nghiệp)</label>
+                <input type="text" ngModel name="PhoneNumber" class="form-control form-control-warning" id="PhoneNumber" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Email">Email</label>
+                <input type="email" ngModel name="Email" class="form-control form-control-warning" id="Email" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="TaxCode">Mã số thuế</label>
+                <input type="text" ngModel name="TaxCode" class="form-control form-control-warning" id="TaxCode" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Website">Website(Nếu có)</label>
+                <input type="text" ngModel name="Website" class="form-control form-control-warning" id="Website" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="description">Mô tả</label>
+                <textarea ngModel name="description" class="form-control form-control-warning" id="description" required></textarea>
+            </div>
+            <div class="form-group has-danger">
+                <admin-switch-button [Title]="'Đối tác'" [value]="true" (valueChanged)="isPartner=$event"></admin-switch-button>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label">Logo</label>
+                <admin-upload-file (uploadSuccess)="ImageURL=$event"></admin-upload-file>
+            </div>
+            <hr>
+            <ngb-alert [type]="error.type" (close)="error.mess =''" *ngIf="error.mess != ''">{{ error.mess }}</ngb-alert>
+            <div class="modal-footer">
+                <button type="submit" class="btn-admin btn-primary">Lưu</button>
+                <button type="button" class="btn-admin btn-secondary" (click)="close() ">Hủy</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

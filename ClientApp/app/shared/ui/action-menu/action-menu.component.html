@@ -1,0 +1,5 @@
+<div class="d-flex justify-content-center hures-menu">
+    <ng-container *ngFor="let item of items; let i=index">
+        <hure-action-item *ngIf="item.isVisibled" [item]="item"></hure-action-item>
+    </ng-container>
+</div>

@@ -1,0 +1,35 @@
+<div style="padding-top:24px;">
+    <hure-search-bar></hure-search-bar>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-xl-8 col-lg-8 ">
+                <div class="jumbotron">
+                    <div *ngIf="jobs " class="hures-container">
+                        <div class="row" style="margin: 0.25rem">
+                            <!-- <div class="col-md-6"> -->
+                            <h3 class="text-center m-2" style="text-align: center">Có {{ total }} {{ isIntership?'việc thực tập':'việc làm' }} cho bạn</h3>
+                            <!-- </div> -->
+                        </div>
+                        <div class="d-flex flex-column">
+                            <ng-container *ngFor="let job of jobs| paginate: { id:'job', itemsPerPage: 10,
+                             currentPage: page, totalItems : total } ;let i=index">
+                                <hure-job [job]="job" class="m-1"></hure-job>
+                                <hr style="width:100%;">
+                            </ng-container>
+                            <h5 class="text-center" *ngIf="total==0">Không có mục nào</h5>
+                            <div class="has-text-centered">
+                                <pagination-controls id="job" (pageChange)="changePage($event)" autoHide="true" previousLabel="Trước"
+                                    nextLabel="Sau"></pagination-controls>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-4 col-lg-4">
+                <div *ngIf="jobsHot$" class="jumbotron">
+                    <hure-jobs-container [jobsObserver]="jobsHot$" paging="no" title="{{ isIntership?'Việc thực tập mới nhất':'Việc làm mới nhất'}}" size="small" limit="10"></hure-jobs-container>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

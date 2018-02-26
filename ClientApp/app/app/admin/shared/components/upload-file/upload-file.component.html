@@ -1,0 +1,18 @@
+<div class="container p-y-1">
+    <div class="row m-b-1">
+        <div class="col-sm-6 offset-sm-3">
+            <div class="form-group inputDnD">
+                <!-- <label class="sr-only" for="inputFile">File Upload</label>
+                <input type="file" class="form-control-file text-success font-weight-bold" id="inputFile" accept="image/*" (change)="uploadFile($event)"
+                    title="Nhấp vào để tải ảnh"> -->
+                <div class="upload-btn-wrapper">
+                    <button class="btn-input">Tải ảnh</button>
+                    <input type="file" accept="image/*" name="myfile" (change)="uploadFile($event)" />
+                </div>
+                <hr>
+                <img class="image-show" [src]="url" alt="">
+            </div>
+
+        </div>
+    </div>
+</div>

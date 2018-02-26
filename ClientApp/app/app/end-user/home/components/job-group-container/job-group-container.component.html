@@ -1,0 +1,10 @@
+<h3>Nhóm Ngành Nghề</h3>
+<div class="hures-job-group-container d-flex justify-content-center flex-wrap">
+    <div class="container">
+        <div class="row">
+            <ng-container *ngFor="let item of jobGroups;let i=index">
+                <hure-group *ngIf="i<8" class="col-md-6 col-xl-3" style="margin-bottom: 5px;" [image]="item.imageURL" [link]="item.id" [text]="item.name"></hure-group>
+            </ng-container>
+        </div>
+    </div>
+</div>

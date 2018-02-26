@@ -1,0 +1,12 @@
+<h3>{{title}}</h3>
+<div class="container hures-event1">
+
+    <div *ngIf="events$ | async; let events; else waiting" class="row hures-event2">
+        <ng-container *ngFor="let event of events | paginate: { itemsPerPage: 9, currentPage: page };let i=index">
+            <hure-event-card [event]="event" class="col-sm-6 col-md-6 col-lg-4 col-xl-4 hure-event-card-box"></hure-event-card>
+        </ng-container>
+    </div>
+</div>
+<div class="has-text-centered">
+    <pagination-controls (pageChange)="page = $event" autoHide="true" previousLabel="Trước" nextLabel="Sau"></pagination-controls>
+</div>

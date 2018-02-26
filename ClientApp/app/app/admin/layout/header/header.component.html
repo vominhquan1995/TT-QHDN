@@ -1,0 +1,93 @@
+<nav class="navbar navbar-expand-lg navbar-custom bg-green fixed-top border border-white" id="mainNav">
+    <a class="navbar-brand">
+        <!--HUTECH-->
+        <img src="./img/logo.png" class="logo">
+    </a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="expand()">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion" *ngIf="listMenu">
+            <li class="nav-item border border-white" data-toggle="tooltip" data-placement="right" [title]="item.title" *ngFor="let item of listMenu">
+                <a *ngIf="!item.skip" [routerLink]="item.path" [routerLinkActive]="['router-link-active']" class="nav-link">
+                    <i class="fa fa-fw" [ngClass]="item.icon"></i>
+                    <span class="nav-link-text">{{item.title}}</span>
+                </a>
+            </li>
+            <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Charts">
+                <a [routerLink]="['/admin/manager-user']" [routerLinkActive]="['router-link-active']" class="nav-link">
+                    <i class="fa fa-fw fa-table"></i>
+                    <span class="nav-link-text">Quản lí người dùng</span>
+                </a>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Tables">
+                <a [routerLink]="['/admin/manager-company']" [routerLinkActive]="['router-link-active']" class="nav-link">
+                    <i class="fa fa-fw fa-edit"></i>
+                    <span class="nav-link-text">Quản lí doanh nghiệp</span>
+                </a>
+            </li>
+            <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Link">
+                <a [routerLink]="['/bs-element']" [routerLinkActive]="['router-link-active']" class="nav-link">
+                    <i class="fa fa-fw fa-desktop"></i>
+                    <span class="nav-link-text">Quản lí việc làm</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#QLCH" data-parent="#exampleAccordion" (click)="expand()">
+                    <i class="fa fa-fw fa-wrench"></i>
+                    <span class="nav-link-text">Quản lí cấu hình</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="QLCH">
+                    <li>
+                        <a [routerLink]="['/admin/manager-job-group']" [routerLinkActive]="['router-link-active']">
+                            <span>Nhóm ngành nghề</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/admin/manager-work-type']" [routerLinkActive]="['router-link-active']">
+                            <span>Loại hình làm việc</span>
+                        </a>
+                    </li>
+                </ul>
+            </li> -->
+            <!-- <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Example Pages">
+                <a class="nav-link nav-link-collapse collapsed" data-toggle="collapse" href="#collapseExamplePages" data-parent="#exampleAccordion">
+                    <i class="fa fa-fw fa-file"></i>
+                    <span class="nav-link-text">Example Pages</span>
+                </a>
+                <ul class="sidenav-second-level collapse" id="collapseExamplePages">
+                    <li>
+                        <a href="login.html">Login Page</a>
+                    </li>
+                    <li>
+                        <a href="register.html">Registration Page</a>
+                    </li>
+                    <li>
+                        <a href="forgot-password.html">Forgot Password Page</a>
+                    </li>
+                    <li>
+                        <a href="blank.html">Blank Page</a>
+                    </li>
+                </ul>
+            </li> -->
+        </ul>
+        <ul class="navbar-nav sidenav-toggler border border-black">
+            <li class="nav-item">
+                <a class="nav-link text-center" id="sidenavToggler" (click)="toggleSidebar()">
+                    <i class="fa fa-fw fa-angle-left"></i>
+                </a>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="username">
+                {{username}}
+            </li>
+            <li class="nav-item">
+                <a (click)="logout()">
+                    <i class="fa fa-fw fa-sign-out"></i>Thoát</a>
+            </li>
+
+        </ul>
+    </div>
+</nav>

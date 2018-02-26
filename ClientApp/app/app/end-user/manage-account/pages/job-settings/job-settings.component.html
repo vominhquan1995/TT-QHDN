@@ -1,0 +1,3 @@
+<div *ngIf="jobs$">
+  <hure-jobs-container [jobsObserver]="jobs$" title="{{ role=='Student'?'Công việc đã ứng tuyển':'Công việc đã đăng' }}" paging="yes"></hure-jobs-container>
+</div>

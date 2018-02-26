@@ -1,0 +1,67 @@
+@import "~styles/variables";
+// .hures-intro-banner{
+//     height:250px;
+//     background-image: url('https://www.img.in.th/images/f7d4626b4ca723de8598e44f782e7ebe.png');
+//     width:100%;
+//     position: relative;
+//     margin-bottom: 20px;
+// }
+.intro-label{
+    background: $main-color;
+    // background-image: url('https://www.img.in.th/images/c8ca1c27a87cec562f2213e5eb362a32.png');
+    padding:10px;
+    text-align: center;
+    color:white;
+   
+}
+.intro-label2{
+    border-top-right-radius: 10px;
+}
+.intro-mini-label{
+    border:1px solid $main-color-40;
+    border-radius: 20px;
+    padding:20px 20px;
+    text-align: center;
+    position: relative;
+    color:$main-color;
+    font-weight: 500;
+}
+.intro-number-label{
+    position: absolute;
+    border-radius: 50px;
+    width:30px;
+    height:30px;
+    line-height: 1.7rem;
+    top: -10px;
+    left:-10px;
+    color: $text-white;
+    background-color:$main-color;
+}
+.intro-box i{
+    color:red;
+}
+.intro-box{
+    padding:20px;
+}
+
+.intro-img{
+    img{
+        border-top-left-radius: 10px;
+    }
+}
+@media screen and (max-width:767px){
+    .intro-img{
+        img{
+            border-top-right-radius: 10px;
+        }
+    }
+    .intro-label2{
+        border-top-right-radius: 0px;
+    }
+}
+.main-box{
+    border-radius:10px;
+    border:solid 2px $main-color;
+    padding: 15px;
+    margin-bottom:30px;
+}

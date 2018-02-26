@@ -1,0 +1,35 @@
+@import '../../styles/_define.scss';
+$topnav-background-color: #55a747;
+    .logo{
+        height: $height-nav; 
+    }
+    .admin-header{
+        background: $topnav-background-color;
+         .navbar-brand {
+            color: #fff;
+        }
+        .nav-item > a {
+            color: $blue;
+            &:hover {
+                color: #fff;
+            }
+        }
+    }
+.navbar-custom .navbar-toggler {
+        color: rgba(0, 0, 0, 0.5);
+        border-color: rgba(0, 0, 0, 0.1);
+}
+.navbar-custom .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+a.router-link-active {
+    // background: darken($topnav-background-color, 5%);
+    background: black;
+    color: #fff !important;
+}
+.username{
+    color: white;
+    margin-right: 5px;
+}
+    
+

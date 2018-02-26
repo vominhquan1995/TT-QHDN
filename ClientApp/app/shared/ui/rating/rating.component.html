@@ -1,0 +1,7 @@
+<div class="d-flex justify-content-center">
+    <a *ngFor="let i of range(max)" (click)="selectStar(i)" > 
+        <span><i class="fa" [class.fa-star]="i<=rating" [class.fa-star-o]="i>rating" style="font-size:2em;"
+            [style.color.yellow]="i<=rating" [style.color.black]="i>rating"></i></span>    
+    </a>
+</div>
+<h1 class="text-center">{{ textRating[rating-1] }}</h1> 

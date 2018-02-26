@@ -1,0 +1,32 @@
+@import './styles/_define.scss';
+// .main-container {
+//     margin-top: 56px;
+//     margin-left: $width-nav;
+//     padding: 15px;
+//     -ms-overflow-x: hidden;
+//     overflow-x: hidden;
+//     overflow-y: scroll;
+//     position: relative;
+//     overflow: hidden;
+// }
+// @media screen and (max-width: 992px) {
+//     .main-container {
+//         margin-left: 0px !important;
+//     }
+// }
+@import '/styles/app.scss';
+
+
+
+body .fixed-nav {
+    padding-top: 56px
+}
+  
+.content-wrapper {
+    min-height: calc(100vh - 56px);
+    padding-top: 2rem;
+    background-color: $gray-background;
+    > .container-fluid{
+        margin: $size-5px;
+    }
+ }

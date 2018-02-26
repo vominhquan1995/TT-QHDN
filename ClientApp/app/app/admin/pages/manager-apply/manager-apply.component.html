@@ -1,0 +1,93 @@
+<div class="card mb-3" [@routerTransition]>
+    <div class="card-header">Danh sách tài khoản</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-1">
+                <div class="form-group filter">
+                    <select class="form-control" [(ngModel)]="numberItemPage" (change)="pageChange()" id="exampleSelect1">
+                        <option [ngValue]="10">10</option>
+                        <option [ngValue]="20">20</option>
+                        <option [ngValue]="50">50</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <select [(ngModel)]="filterStatus" class="btn-admin btn-default dropdown-toggle" (change)="getData()">
+                    <option selected [value]="0">Tình trạng hồ sơ</option>
+                    <option [value]="1">Đang chờ</option>
+                    <option [value]="2">Đã xem</option>
+                    <option [value]="3">Chờ phỏng vấn</option>
+                    <option [value]="4">Đã được nhận</option>
+                    <option [value]="5">Đã thất bại</option>
+                </select>
+            </div>
+            <div class="col-md-9">
+                <admin-dropdown [Title]="'Lọc theo doanh nghiệp'" [currentValue]="''" [Models]="companies" [ValueShow]="'name'" [ValueSelect]="'id'"
+                    (valueChange)="filterCompanyChanged($event)"></admin-dropdown>
+            </div>
+            <br>
+            <div class="col-md-12">
+                <div class="form-group input-group">
+                    <input type="text" class="form-control" placeholder="Tìm theo tên tài khoản hay tên người dùng" [(ngModel)]="keySearch" (keyup.enter)="getData()">
+                    <span class="input-group-btn">
+                        <button class="btn-admin btn-secondary" type="button" (click)="getData()">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!isLoading">
+            <div class="view-total">
+                Tổng cộng {{totalItem}} dòng được tìm thấy
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped " *ngIf="_data">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Công việc</th>
+                            <th>Doanh nghiệp</th>
+                            <th>Sinh viên</th>
+                            <th>Lớp</th>
+                            <th>Ngày nộp</th>
+                            <th class="text-center">Tiến trình</th>
+                            <th colspan="2" class="text-center">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of _data;let i =index">
+                            <td>{{indexRow(i)}}</td>
+                            <td class="text-truncate-sm">{{item.job.title}}</td>
+                            <td>{{item.job.company.name}}</td>
+                            <td>{{item.account.fullName}}</td>
+                            <td>{{item.account.class}}</td>
+                            <td>{{item.timeApply | date : 'dd/MM/yyyy'}}</td>
+                            <td>
+                                <span [class]="item.classColor" [title]="item.des">{{item.status}}</span>
+                            </td>
+                            <td class="text-center">
+                                <a (click)="openDetail(item.accountId,item.jobId)" placement="top" ngbTooltip="Xem hồ sơ">
+                                    <i class=" fa fa-eye" aria-hidden="true "></i>
+                                </a>
+                            </td>
+                            <td class="text-center">
+                                <a (click)="showConfirmDelete(item.accountId,item.jobId)" placement="top" ngbTooltip="Xóa hồ sơ">
+                                    <i class="fa fa-times " aria-hidden="true "></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="_data.length==0">
+                            <td colspan="9" class="text-center">Không có dữ liệu</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ngb-pagination [pageSize]="numberItemPage " [collectionSize]="totalItem " [(page)]="currentPage " [maxSize]="numberPageView "
+                [boundaryLinks]="true " (pageChange)="pageChange() "></ngb-pagination>
+        </div>
+        <admin-loading [isLoader]="isLoading"></admin-loading>
+    </div>
+
+</div>
+<detail-apply></detail-apply>

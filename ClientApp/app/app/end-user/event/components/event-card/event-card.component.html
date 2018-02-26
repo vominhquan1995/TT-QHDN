@@ -1,0 +1,28 @@
+<div class="hures-event-card">
+  <div class="checktime">{{ status! }}</div>
+  <a (click)="goToDetail()" class="hures-event-img">
+    <img alt="logo" [src]="event?.imageURL" class="imgne" />
+    <div class="img-hover"></div>
+  </a>
+  <div class="hures-event-relative">
+    <div class="hures-event-button">
+      <div class="label hures-btn">{{ event?.title }}</div>
+    </div>
+    <div href="#" class="hures-event-name">
+      <a (click)="goToDetail()">{{ event?.name | limitText:50 }}</a>
+    </div>
+    <hr>
+    <div class="hures-event-region">
+      <div class="hures-event-region-place">
+        <i class="fa fa-map-marker"></i> {{ event?.place }}</div>
+      <!-- <br> -->
+      <div class="hures-event-region-date">
+        <i class="fa fa-calendar"></i> Thời gian bắt đầu: {{ event?.startTime | date : 'dd/MM/yyyy' }}</div>
+      <!-- <br> -->
+      <div class="hures-event-region-date">
+        <i class="fa fa-calendar"></i> Thời gian kết thúc: {{ event?.endTime | date : 'dd/MM/yyyy' }}</div>
+    </div>
+
+
+  </div>
+</div>

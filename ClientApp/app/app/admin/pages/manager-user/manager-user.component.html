@@ -1,0 +1,111 @@
+<div class="card mb-3" [@routerTransition]>
+    <div class="card-header">Danh sách tài khoản</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn-admin btn-primary" (click)="openCreateUser()">Thêm tài khoản</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="form-group filter">
+                    <select class="form-control" [(ngModel)]="numberItemPage" (change)="pageChange()" id="exampleSelect1">
+                        <option [ngValue]="5">5</option>
+                        <option [ngValue]="10">10</option>
+                        <option [ngValue]="20">20</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <select [(ngModel)]="filterStatus" class="btn-admin btn-default dropdown-toggle" (change)="getData()">
+                    <option selected [value]="0">Trạng thái</option>
+                    <option [value]="1">Kích hoạt</option>
+                    <option [value]="2">Chưa kích hoạt</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <admin-dropdown [Title]="'Lọc theo quyền'" [currentValue]="''" [Models]="roles" [ValueShow]="'name'" [ValueSelect]="'id'"
+                    (valueChange)="roleChange($event)"></admin-dropdown>
+            </div>
+            <div class="col-md-7">
+                <div class="form-group input-group">
+                    <input type="text" class="form-control" placeholder="Tìm theo tên tài khoản hay tên người dùng" [(ngModel)]="keySearch" (keyup.enter)="getData()">
+                    <span class="input-group-btn">
+                        <button class="btn-admin btn-secondary" type="button" (click)="getData()">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!isLoading">
+            <div class="view-total">
+                Tổng cộng {{totalItem}} dòng được tìm thấy
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped " *ngIf="_data">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Họ tên</th>
+                            <th>Email</th>
+                            <th>Tên tài khoản</th>
+                            <th>Ngày sinh</th>
+                            <th>Giới tính</th>
+                            <th>Điện thoại</th>
+                            <th>Lớp</th>
+                            <th>Ngày tạo</th>
+                            <th>Phân quyền</th>
+                            <th>Trạng thái</th>
+                            <th colspan="3" class="text-center">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of _data;let i =index">
+                            <td>{{indexRow(i)}}</td>
+                            <td>{{item.fullName}}</td>
+                            <td>{{item.email}}</td>
+                            <td>{{item.username}}</td>
+                            <td>{{item.dateOfBirth | date : 'dd/MM/yyyy'}}</td>
+                            <td>{{(item.sex) ? 'Nam' : 'Nữ'}}</td>
+                            <td>{{item.phoneNumber}}</td>
+                            <td>{{item.class}}</td>
+                            <td>{{item.createdDate | date : 'dd/MM/yyyy'}}</td>
+                            <td>{{item.roleName}}</td>
+                            <td>
+                                <span *ngIf="item.isActivated" class="badge badge-success">Hoạt động</span>
+                                <span *ngIf="!item.isActivated" class="badge badge-warning">Đang chờ</span>
+                            </td>
+                            <td>
+                                <a (click)="showConfirmActivate(item.guid,item.isActivated)" placement="top" ngbTooltip="Kích hoạt/Hủy kích hoạt">
+                                    <i class="fa fa-unlock-alt" *ngIf="!item.isActivated" aria-hidden="true"></i>
+                                    <i class="fa fa-lock" *ngIf="item.isActivated" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a (click)="openEdit(item.guid)" placement="top" ngbTooltip="Sửa thông tin">
+                                    <i class=" fa fa-pencil-square-o " aria-hidden="true "></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a (click)="showConfirmDelete(item.guid)" placement="top" ngbTooltip="Xóa tài khoản">
+                                    <i class="fa fa-times " aria-hidden="true "></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="_data.length==0">
+                            <td colspan="14" class="text-center">Không có dữ liệu</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ngb-pagination [pageSize]="numberItemPage " [collectionSize]="totalItem " [(page)]="currentPage " [maxSize]="numberPageView "
+                [boundaryLinks]="true " (pageChange)="pageChange() "></ngb-pagination>
+        </div>
+        <admin-loading [isLoader]="isLoading"></admin-loading>
+    </div>
+
+</div>
+<create-user (submitData)="getData() "></create-user>
+<admin-edit-user (submitData)="getData()"></admin-edit-user>

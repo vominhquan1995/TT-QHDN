@@ -1,0 +1,230 @@
+@import "~styles/variables";
+@media screen and (min-width: 1201px) {
+    .group-component{
+        box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+        background-color: #fff;
+        padding: 5px 14px;
+        min-width: 200px;
+        display: flex;
+        position: relative;
+        min-height: 100px;
+        figure{
+            margin: 0px;
+            position: relative;
+        }
+        b,strong{
+            display: block;
+            font-size: 14px;
+            color: #333;
+            font-weight: 400;
+            text-transform: uppercase;
+            text-align: left;
+             &:hover {
+                color: $main-color !important;
+            }
+        }
+        .cs-media{
+            display: inline-block;
+            width: 42px;
+            margin-right: -4px;
+            vertical-align: middle;
+        }
+        .cs-text{
+            margin-left: 25px;
+            width: 68%;
+        }
+        .text-position{
+            position: absolute;
+            left: 80px; padding: 15px;
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 992px) {
+    .group-component{
+        box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+        background-color: #fff;
+        padding: 5px 14px;
+        display: flex;
+        min-height: 100px;
+        position: relative;
+        figure{
+            margin: 0px;
+            position: relative;
+        }
+        b,strong{
+            display: block;
+            font-size: 14px;
+            color: #333;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+        .cs-media{
+            display: inline-block;
+            width: 42px;
+            margin-right: -4px;
+            vertical-align: middle;
+        }
+        .cs-text{
+            margin-left: 25px;
+            width: 68%;
+            
+        }
+        .text-position{
+            position: absolute;
+            left: 80px; padding: 15px;
+        }
+    }
+}
+
+@media screen and (max-width: 992px) and (min-width: 768px) {
+    .group-component{
+        box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+        background-color: #fff;
+        padding: 5px 14px;
+        display: flex;
+        min-height: 100px;
+        position: relative;
+        figure{
+            margin: 0px;
+            position: relative;
+        }
+        b,strong{
+            display: block;
+            font-size: 14px;
+            color: #333;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+        .cs-media{
+            display: inline-block;
+            width: 42px;
+            margin-right: -4px;
+            vertical-align: middle;
+        }
+        .cs-text{
+            margin-left: 25px;
+            width: 68%;
+        }
+        .text-position{
+            position: absolute;
+            left: 80px; padding: 15px;
+        }
+    }
+}
+
+@media screen and (max-width: 767px) and (min-width: 576px) {
+    .group-component{
+        box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+        background-color: #fff;
+        padding: 5px 14px;
+        display: flex;
+        min-height: 100px;
+        position: relative;
+        figure{
+            margin: 0px;
+            position: relative;
+        }
+        b,strong{
+            display: block;
+            font-size: 14px;
+            color: #333;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+        .cs-media{
+            display: inline-block;
+            width: 42px;
+            margin-right: -4px;
+            vertical-align: middle;
+        }
+        .cs-text{
+            margin-left: 25px;
+            width: 68%;
+        }
+        .text-position{
+            position: absolute;
+            left: 80px; padding: 15px;
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .group-component{
+        box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+        background-color: #fff;
+        padding: 5px 14px;
+        display: flex;
+        min-height: 100px;
+        position: relative;
+        figure{
+            margin: 0px;
+            position: relative;
+        }
+        b,strong{
+            display: block;
+            font-size: 14px;
+            color: #333;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+        .cs-media{
+            display: inline-block;
+            width: 42px;
+            margin-right: -4px;
+            vertical-align: middle;
+        }
+        .cs-text{
+            margin-left: 25px;
+            width: 68%;
+        }
+        .text-position{
+            position: absolute;
+            left: 80px; padding: 15px;
+            text-align: left;
+        }
+    }
+}
+// @media screen and (max-width: 325px) {
+//     .group-component{
+//         box-shadow: 0 0 5px rgba(0, 0, 0, .1);
+//         background-color: #fff;
+//         padding: 5px 14px;
+//         margin-top:0px !important;
+//         display: flex;
+//         position: static;
+//         a{
+//             margin:auto;
+//             img{
+//                 margin-top:0px;
+//             }
+//         }
+//         figure{
+//             margin: 0px;
+//             position: relative;
+//         }
+//         b,strong{
+//             display: block;
+//             font-size: 14px;
+//             color: #333;
+//             font-weight: 400;
+//             text-transform: uppercase;
+//             text-align: center;
+//             width: 100%;
+//         }
+//         .cs-media{
+//             display: inline-block;
+//             width: 42px;
+//             margin-right: -4px;
+//             vertical-align: middle;
+//         }
+//         .cs-text{
+//             margin-left: 25px;
+//             width: 68%;
+//         }
+//         .text-position{
+//             position: static;
+//         }
+//     }
+
+// }

@@ -1,0 +1,73 @@
+<ng-template #edit let-c="close" let-d="dismiss" size="lg">
+    <div class="modal-header">
+        <h4 class="modal-title">Chỉnh Sửa Thông Tin</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form role="form" (ngSubmit)="save()" ngNativeValidate>
+            <div class="form-group has-success">
+                <label class="form-control-label" for="name">Tên nhóm nghề</label>
+                <input type="text" [(ngModel)]="CompanyModel.name" name="name" class="form-control form-control-success" id="name" required>
+            </div>
+
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="shortName">Tên viết tắt </label>
+                <input type="text" [(ngModel)]="CompanyModel.shortName" name="shortName" class="form-control form-control-warning" id="shortName"
+                    required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="address">Địa chỉ</label>
+                <input type="text" [(ngModel)]="CompanyModel.address" name="address" class="form-control form-control-warning" id="address"
+                    required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Scales">Quy Mô </label>
+                <input type="text" [(ngModel)]="CompanyModel.scales" name="Scales" class="form-control form-control-warning" id="Scales"
+                    required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Scales">Người đại diện</label>
+                <input type="text" [(ngModel)]="CompanyModel.representor" name="Scales" class="form-control form-control-warning" id="Scales"
+                    required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="PhoneNumber">Số điện thoại</label>
+                <input type="text" [(ngModel)]="CompanyModel.phoneNumber" name="PhoneNumber" class="form-control form-control-warning" id="PhoneNumber"
+                    required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Email">Email</label>
+                <input type="text" [(ngModel)]="CompanyModel.email" name="Email" class="form-control form-control-warning" id="Email" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="TaxCode">Mã số thuế</label>
+                <input type="text" [(ngModel)]="CompanyModel.taxCode" name="TaxCode" class="form-control form-control-warning" id="TaxCode" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Website">Website</label>
+                <input type="text" [(ngModel)]="CompanyModel.website" name="Website" class="form-control form-control-warning" id="Website"
+                    required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="description">Mô tả</label>
+                <textarea [(ngModel)]="CompanyModel.description" name="description" class="form-control form-control-warning" id="description"
+                    required></textarea>
+            </div>
+            <div class="form-group has-danger">
+                <admin-switch-button [Title]="'Đối tác'" [value]="CompanyModel.isPartner" (valueChanged)="CompanyModel.isPartner=$event"></admin-switch-button>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label">Logo</label>
+                <admin-upload-file (uploadSuccess)="CompanyModel.urlLogo=$event" [url]="CompanyModel.urlLogo"></admin-upload-file>
+            </div>
+            <hr>
+            <ngb-alert [type]="error.type" (close)="error.mess =''" *ngIf="error.mess != ''">{{ error.mess }}</ngb-alert>
+            <div class="modal-footer">
+                <button type="submit" class="btn-admin btn-primary">Lưu</button>
+                <button type="button" class="btn-admin btn-secondary" (click)="close()">Hủy</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

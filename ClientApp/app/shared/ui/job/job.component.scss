@@ -1,0 +1,179 @@
+@import "~styles/variables";
+$light-color: var(--light);
+.hures-job-card {
+    background: #FFFFFF;
+    padding: 8px;
+    &:hover {
+        background: $light-color;
+        border-radius: 4px;
+    }
+    .hures-job-content {
+        padding: 8px;
+        width: 100%;
+        .hures-job-info {
+            width: 100%;
+        }
+        .hures-job-apply-button {
+            border: solid 1px $main-color;
+            color: $main-color;
+            background: white;
+            display: inline-block;
+            cursor: pointer;
+            min-width: 96px;
+            border-radius: 2px;
+            font-family: "Montserrat", sans-serif;
+            &:hover{
+                background-color: $main-color;
+                color: $text-white;
+            }
+        }
+    }
+    img {
+        max-width: 112px;
+        max-height: 112px;
+        object-fit: contain;
+    }
+    h4 {
+        font-size: 1rem;
+    }
+    p {
+        font-size: 0.8rem;
+    }
+    h4,
+    p {
+        margin: 4px 0;
+    }
+}
+
+.hures-job-content-small {
+    padding: 8px;
+    &:hover {
+        background: $light-color;
+        border-radius: 4px;
+    }
+    .hures-job-apply-button {
+        border: solid 1px $main-color;
+        color: $main-color;
+        background: white;
+        cursor: pointer;
+        display: inline-block;
+        min-width: 96px;
+        border-radius: 2px;
+        font-family: "Montserrat", sans-serif;
+    }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 992px) {
+    .hures-job-card {
+        height: 128px;
+        &:hover {
+       
+        }
+        .hures-job-content {
+         
+            .hures-job-info {
+         
+            }
+            .hures-job-apply-button {
+             
+            }
+        }
+        img {
+            max-width: 112px;
+            object-fit: contain;
+        }
+        h4 {
+            font-size: 1rem;
+        }
+        p {
+            display: none;
+        }
+        h4,
+        p {
+            margin: 4px 0;
+        }
+    }
+
+}
+
+
+@media screen and (max-width: 767px) {
+    .hures-job-card {
+     
+        &:hover {
+       
+        }
+        .hures-job-content {
+         
+            .hures-job-info {
+         
+            }
+            .hures-job-apply-button {
+             
+            }
+        }
+        img {
+            max-width: 112px;
+            object-fit: contain;
+        }
+        h4 {
+            font-size: 1rem;
+        }
+        p {
+            display: none;
+        }
+        h4,
+        p {
+            margin: 4px 0;
+        }
+    }
+}
+@media screen and (max-width: 465px) {
+    #hures-job-card {
+        display: block !important;
+        max-height: none;
+        &:hover {
+       
+        }
+        .hures-job-content {
+            display: block;
+            padding:8px 0px;
+            .unflexxx{
+                // display: block !important;
+            .hures-job-info {
+                
+                span{
+                    display: block !important;
+                    white-space: nowrap;
+                }
+            }
+          
+            .float-right{
+                display: block;
+                float: left !important;
+                margin-right:-6px;
+                .hures-job-apply-button {
+                   
+                }
+            }
+        }
+        }
+        img {
+            max-width: 70px;
+            object-fit: contain;
+        }
+        h4 {
+            font-size: 1rem;
+        }
+        p {
+            display: none;
+        }
+        h4,
+        p {
+            margin: 4px 0;
+        }
+    }
+
+    
+
+}

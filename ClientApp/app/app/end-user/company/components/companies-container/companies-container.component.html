@@ -1,0 +1,21 @@
+<div class="hures-container">
+  <div class="row" style="margin: 0.25rem">
+      <!-- <div class="col-md-6"> -->
+          <h3 class="text-center m-2" style="float: left">{{title}}</h3>
+      <!-- </div> -->
+  </div>
+  <div *ngIf="companies$ | async; let companies; else waiting" class="d-flex flex-column">
+      <ng-container *ngFor="let company of companies| paginate: { itemsPerPage: limit, currentPage: page } ;let i=index">
+          <hure-company-card [company]="company" class="m-1" [size]="size"></hure-company-card>
+          <hr style="width:100%;">
+      </ng-container>
+      <h5 class="text-center" *ngIf="companies.length==0">Không có mục nào</h5>
+      <div class="has-text-centered">
+          <pagination-controls *ngIf="paging=='yes'" (pageChange)="page = $event" autoHide="true" previousLabel="Trước" nextLabel="Sau"></pagination-controls>
+      </div>
+
+  </div>
+  <ng-template #waiting>
+      <hure-waiter></hure-waiter>
+  </ng-template>
+</div>

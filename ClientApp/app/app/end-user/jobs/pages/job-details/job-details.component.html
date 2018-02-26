@@ -1,0 +1,126 @@
+<div class="hures-jobs-details-header">
+  <div class="container">
+    <h1>{{job?.title}}</h1>
+    <p>{{ job?.company.name }} - {{ job?.workType.name}} - {{ job?.jobGroup.name }}</p>
+  </div>
+</div>
+<div class="container hures-jobs-details-body">
+  <!-- info -->
+  <div class="row">
+    <!-- left -->
+    <div class="col-12 col-lg-8">
+      <div class="jumbotron">
+        <h2>Thông tin</h2>
+        <div class="row">
+          <div class="col-12 col-md-6">
+            <ul>
+              <li>Địa điểm:
+                <strong>{{ job?.place}}</strong>
+              </li>
+              <hr>
+              <li>Kinh nghiệm:
+                <strong>{{ job?.experience}}</strong>
+              </li>
+              <hr>
+              <li>Vị trí:
+                <strong>{{ job?.position}}</strong>
+              </li>
+              <hr>
+              <li>Hình thức:
+                <strong>{{ job?.workType?.name }}</strong>
+              </li>
+              <hr>
+              <li>Ngày hết hạn:
+                <strong>{{ job?.deadlineApply | date:'dd/MM/yyyy'}}</strong>
+              </li>
+              <hr>
+
+            </ul>
+          </div>
+          <div class="col-12 col-md-6">
+            <ul>
+              <li>Số lượng:
+                <strong>{{ job?.number }}</strong>
+              </li>
+              <hr>
+              <li>Thử việc:
+                <strong>{{ job?.timePre}}</strong>
+              </li>
+              <hr>
+              <!-- <li>Tuổi:
+                <strong>{{ job?.age }}</strong>
+              </li> -->
+              <hr>
+              <li>Phúc lợi:
+                <strong>{{ job?.benefit}}</strong>
+              </li>
+              <hr>
+              <li>Mức lương:
+                <strong>{{job?.salary}}</strong>
+                <!-- từ
+                <strong>{{ job?.lowestSalary | currency:'VND':true }}</strong> đến
+                <strong>{{job?.highestSalary | currency:'VND':true}}</strong>  -->
+              </li>
+              <hr>
+            </ul>
+          </div>
+          <div class="col-12 col-md-4 col-xl-3">
+            <button *ngIf="role!='Admin'&&role!='Company'" class="hures-btn" (click)="apply(job)" rippleEffect>Ứng tuyển</button>
+          </div>
+        </div>
+      </div>
+      <div class="jumbotron">
+        <h2>Chi tiết</h2>
+        <div class="hures-job-content-html" [innerHTML]="job?.contentURL"></div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-xl-3">
+            <button *ngIf="role!='Admin'&&role!='Company'" class="hures-btn" (click)="apply(job)" rippleEffect>Ứng tuyển</button>
+          </div>
+          <div class="col-12">
+            <strong class="float-right m-1">Lượt xem:
+              <p class="d-inline-block" style="color:dodgerblue">{{ job?.viewCount }}</p>
+            </strong>
+            <strong class="float-right m-1">Ứng tuyển:
+              <p class="d-inline-block" style="color:dodgerblue"> {{ job?.appliedCount }}</p>
+            </strong>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- right -->
+    <div class="col-12 col-lg-4">
+      <div class="jumbotron">
+        <ul>
+          <li style="max-height:100%;">
+            <div class="hures-jobs-company-logo-container">
+              <img [src]="job?.company.urlLogo" [alt]="job?.company.shortName">
+            </div>
+          </li>
+          <hr>
+          <li>
+            Tên Doanh nghiệp:
+            <strong>{{ job?.company.name }} ({{ job?.company.shortName }})</strong>
+          </li>
+          <hr>
+          <li>
+            Website:
+            <a href="{{ job?.company.website }}">{{job?.company.website}}</a>
+          </li>
+          <hr>
+          <li>
+            SĐT:
+            <a href="tel:{{ job?.company.phoneNumber }}">{{job?.company.phoneNumber}}</a>
+          </li>
+        </ul>
+        <hr>
+        <div *ngIf="jobRelated$">
+          <hure-jobs-container [jobsObserver]="jobRelated$" paging="no" limit="3" size="small" title="Đang tuyển"></hure-jobs-container>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+
+  </div>
+
+</div>

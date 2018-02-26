@@ -1,0 +1,10 @@
+<ul class="nav justify-content-center">
+    <li *ngFor="let tab of tabs" class="nav-item" (click)="selectTab(tab)">
+        <a class="nav-link" [class.active]="tab.isActivated">{{tab.title}}</a>
+    </li>
+</ul>
+<div class="carousel slide tabbed" [style.height.px]="height">
+    <div class="carousel-inner">
+        <ng-content></ng-content>
+    </div>
+</div>

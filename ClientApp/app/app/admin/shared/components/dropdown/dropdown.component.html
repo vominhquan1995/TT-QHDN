@@ -1,0 +1,4 @@
+<select [(ngModel)]="currentValue" class="btn-admin btn-default dropdown-toggle" (change)="change()">
+    <option [value]="''">{{Title}}</option>
+    <option *ngFor="let item of Models" [value]="item[ValueSelect]" style="text-align: left">{{item[ValueShow]}}</option>
+    </select>

@@ -1,0 +1,52 @@
+<div *ngIf="account$ | async; let accounts; else waiting">
+    <div class="row" style="margin: 0.25rem">
+        <h3 class="text-center m-2" style="float: left">Các hồ sơ đã ứng tuyển</h3>
+    </div>
+    <div class="d-flex flex-column">
+        <table class="table table-striped">
+            <thead>
+                <th>STT</th>
+                <th>Họ tên</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Địa chỉ</th>
+                <th class="text-center">Tác vụ</th>
+                <th>Chi tiết</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let account of accounts | paginate: { itemsPerPage: limit, currentPage: page } ;let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{account.fullName}}</td>
+                    <td>{{account.email}}</td>
+                    <td>{{account.phoneNumber}}</td>
+                    <td>{{account.address}}</td>
+                    <td class="text-center">
+                        <a (click)="openUpdateProgress(account.id)" title="Cập nhật">
+                            <i class="fa fa-retweet"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a (click)="openDetail(account)">
+                            <i class="fa fa-eye">Xem</i>
+                        </a>
+                    </td>
+                </tr>
+                <tr *ngIf="accounts.length==0">
+                    <td colspan="6" class="text-center">Không có hồ sơ ứng tuyển</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="has-text-centered">
+            <pagination-controls (pageChange)="page = $event" autoHide="true" previousLabel="Trước" nextLabel="Sau"></pagination-controls>
+        </div>
+        <div>
+            <button class="btn btn-primary" (click)="back()">Quay lại</button>
+        </div>
+    </div>
+</div>
+<br>
+<ng-template #waiting style="vertical-align: middle;margin: auto;text-align: center">
+    <hure-waiter></hure-waiter>
+</ng-template>
+<detail-cv></detail-cv>
+<update-progress (submitData)="getData()"></update-progress>

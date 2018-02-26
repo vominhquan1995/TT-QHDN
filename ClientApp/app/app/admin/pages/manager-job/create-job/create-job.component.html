@@ -1,0 +1,89 @@
+<div class="card mb3">
+    <div class="card-header">Thêm tin tuyển dụng mới</div>
+    <div class="card-body">
+        <form role="form" #formCreate="ngForm" (ngSubmit)="create(formCreate)" ngNativeValidate>
+            <div class="form-group has-success">
+                <label class="form-control-label" for="title">Tiêu đề</label>
+                <input type="text" ngModel name="Title" class="form-control form-control-success" id="title" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Position ">Vị trí tuyển dụng</label>
+                <input type="text" ngModel name="Position" class="form-control form-control-warning" id="Position" maxlength="200" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Number">Số lượng cần tuyển</label>
+                <input type="text" ngModel name="Number" class="form-control form-control-warning" id="Number" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Place">Địa điểm làm việc</label>
+                <input type="text" ngModel name="Place" class="form-control form-control-warning" id="Place" required>
+            </div>
+            <div class="form-group has-danger">
+                <label class="form-control-label">Doanh Nghiệp</label>
+                <admin-dropdown [Title]="'Chọn doanh nghiệp'" [Models]="companies" [ValueShow]="'name'" [ValueSelect]="'id'" (valueChange)="companyChange($event)"></admin-dropdown>
+            </div>
+            <div class="form-group has-danger">
+                <label class="form-control-label">Loại hình làm việc</label>
+                <admin-dropdown [Title]="'Chọn loại hình'" [Models]="worktypes" [ValueShow]="'name'" [ValueSelect]="'id'" (valueChange)="worktypeChange($event)"></admin-dropdown>
+            </div>
+            <div class="form-group has-danger">
+                <label class="form-control-label">Nhóm ngành</label>
+                <admin-dropdown [Title]="'Chọn nhóm ngành'" [Models]="jobgroups" [ValueShow]="'name'" [ValueSelect]="'id'" (valueChange)="jobgroupChange($event)"></admin-dropdown>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="ShortDescription">Mô tả ngắn</label>
+                <input type="text" ngModel name="ShortDescription" class="form-control form-control-warning" id="ShortDescription" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="description">Mô tả</label>
+                <admin-ckeditor></admin-ckeditor>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Experience ">Kinh nghiệm ( theo năm)</label>
+                <input type="text" ngModel name="Experience" class="form-control form-control-warning" id="Experience" maxlength="100" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Benefit">Quyền lợi</label>
+                <input type="text" ngModel name="Benefit" class="form-control form-control-warning" id="Benefit" required>
+            </div>
+            <!-- <div class="form-group has-warning">
+                <label class="form-control-label" for="MajorTag ">Đánh tag (nếu có)</label>
+                <input type="text" ngModel name="MajorTag" class="form-control form-control-warning" id="MajorTag">
+            </div> -->
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="TimePre">Thời gian thử việc(nếu có)</label>
+                <input type="text" ngModel name="TimePre" maxlength="200" class="form-control form-control-warning" id="TimePre">
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Salary">Mức lương (Nếu có)</label>
+                <input type="text" ngModel name="Salary" class="form-control form-control-warning" id="Salary" required>
+                <label class="form-control-label">Ví dụ : từ 1.000.000 VNĐ đến 3.000.000 VNĐ</label>
+            </div>
+            <!-- <div class="form-group has-warning">
+                <label class="form-control-label" for="Age">Độ tuổi</label>
+                <input type="text" ngModel name="Age" maxlength="200" class="form-control form-control-warning" id="Age">
+            </div> -->
+            <!-- <div class="form-group has-warning">
+                <label class="form-control-label" for="LowestSalary">Mức lương thấp nhất</label>
+                <input type="number" ngModel step="500000" min="0" name="LowestSalary" class="form-control form-control-warning" id="LowestSalary">
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="HighestSalary">Mức lương cao nhất</label>
+                <input type="number" ngModel name="HighestSalary" step="500000" min="500000" class="form-control form-control-warning" id="HighestSalarys">
+            </div> -->
+            <div class="form-group has-danger">
+                <label class="form-control-label">Hạn nộp hồ sơ</label>
+                <admin-date-picker (timeChange)="timeChange($event)"></admin-date-picker>
+            </div>
+            <div class="form-group has-danger">
+                <admin-switch-button [Title]="'Đánh dấu nổi bật'" [value]="false" (valueChanged)="hotChange($event)"></admin-switch-button>
+            </div>
+            <hr>
+            <ngb-alert [type]="error.type" (close)="error.mess =''" *ngIf="error.mess != ''">{{ error.mess }}</ngb-alert>
+            <div class="modal-footer">
+                <button type="submit" class="btn-admin btn-primary">Lưu</button>
+                <button type="button" class="btn-admin btn-secondary" (click)="back()">Quay lại</button>
+            </div>
+        </form>
+    </div>
+</div>

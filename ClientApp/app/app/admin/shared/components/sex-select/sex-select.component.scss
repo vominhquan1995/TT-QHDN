@@ -1,0 +1,19 @@
+.btn-primary {
+    color: #fff !important;
+    background-color: #007bff !important;
+    border-color: #007bff !important;
+}
+.modal-dialog .modal-content {
+    .btn-secondary >.btn{
+        
+    }
+    .btn{
+        border: 0 ;
+    }
+    .btn:active{
+        background:rgba($color:  #000000, $alpha: 0.2);
+        border: 0;
+        color: #007bff;
+        box-shadow: 0;
+    }
+}

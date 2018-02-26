@@ -1,0 +1,47 @@
+.app-carousel {
+    height: 136px;
+    width:100%;
+    overflow: hidden;
+    .slides {
+        list-style: none;
+        position: relative;
+        overflow: hidden;
+        height: 136px;
+        padding:0px;
+        .app-carousel-img-container {
+            height: 100%;
+            display: block;
+            float: left;
+            img {
+                height: 100%;
+                transform: translateX(5%);
+                padding: 8px;
+                max-width: 120px;
+                object-fit: contain;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .app-carousel {
+       
+        .slides {
+         
+            // transition: all 0.5s ease-in;
+            // -moz-transition: all 0.5s ease-in;
+            // -webkit-transition: all 0.5s ease-in;
+            .app-carousel-img-container {
+                text-align: center;
+                a{
+                   text-align: center;
+                   img {
+                        text-align: center;
+                }
+                }
+                
+            }
+        }
+    }
+
+}

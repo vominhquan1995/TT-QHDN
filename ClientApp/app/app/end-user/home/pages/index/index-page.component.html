@@ -1,0 +1,39 @@
+<slide> </slide>
+<hure-search-bar></hure-search-bar>
+<!--<hr>-->
+<!-- <hure-action-bar></hure-action-bar> -->
+<section id="main">
+    <div class="hure-job-group-list">
+        <hure-job-group-container></hure-job-group-container>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-xl-6 col-lg-6">
+                <div class="jumbotron">
+                    <hure-jobs-container [jobsObserver]="jobsObserver" paging="no"></hure-jobs-container>
+                    <div style="text-align: center">
+                        <a style="display:inline-block" [routerLink]="['jobs','list']">
+                            <button class="hures-btn">Xem Thêm</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-xl-6 col-lg-6">
+                <div class="jumbotron">
+                    <hure-jobs-container [jobsObserver]="internObserver" paging="no" title="Thực tập"></hure-jobs-container>
+                    <div style="text-align: center">
+                        <a style="display:inline-block" [routerLink]="['jobs','list','internship']">
+                            <button class="hures-btn">Xem Thêm</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <hure-events-bar></hure-events-bar>
+    <div>
+        <hure-brand-container></hure-brand-container>
+    </div>
+</section>

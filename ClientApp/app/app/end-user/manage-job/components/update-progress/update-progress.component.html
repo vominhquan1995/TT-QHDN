@@ -1,0 +1,19 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h5>Cập nhật trạng thái hồ sơ</h5>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <!-- <progress-bar-apply></progress-bar-apply> -->
+        <div class="box-button">
+            <span *ngFor="let option of listOption">
+                    <a *ngIf="option.value" [class]="option.classColor" (click)="updateStatus(option.key)">{{option.title}}</a>
+            </span>
+            <span *ngIf="isDone">
+                Hồ sơ đã xử lí hoàn tất.
+            </span>
+        </div>
+    </div>
+</ng-template>

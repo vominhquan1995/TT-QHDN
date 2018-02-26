@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="jumbotron">
+        <h1>LIÊN HỆ-GÓP Ý</h1>
+        <ul>
+            <li>
+                <span style="width: 100%; text-align: justify; color: rgb(0, 156, 201);">
+                    Đây là kênh thông tin tiếp nhận những góp ý, chia sẻ, thắc mắc của tất cả phụ huynh, sinh viên, giảng viên, cán bộ nhân viên
+                    và tất cả những ai quan tâm gửi ý kiến đóng góp cho Nhà trường. Các câu hỏi, góp ý gửi đến sẽ hoàn toàn
+                    được giữ bí mật và được Hội Đồng Quản Trị, Ban Giám Hiệu, các trưởng bộ phận trả lời sớm nhất. Chân thành
+                    cảm ơn bạn đã có những ý kiến đóng góp xây dựng và phát triển Trường .
+                </span>
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <span style="width: 100%; text-align: justify; color: rgb(0, 156, 201);">
+                    Chú ý : Để nhận được câu trả lời của Nhà trường xin vui lòng nhập địa chỉ Email chính xác
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class="hures-container-form">
+        <form [formGroup]="contactForm" novalidate>
+            <div class="row">
+                <div class="form-group col">
+                    <label>Họ Và Tên của bạn:</label>
+                    <input type="text" class="form-control" [class.form-control-invalid]="contactForm.controls.fullname.invalid" formControlName="fullname"
+                        placeholder="Nhập họ tên bạn...">
+                    <small *ngIf="contactForm.controls.fullname.invalid" class="form-text text-muted">
+                        Vui lòng nhập tên
+                    </small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <label>Điện Thoại:</label>
+                    <input placeholder="Số điện thoại của bạn" type="text" formControlName="phone" class="form-control" [class.form-control-invalid]="contactForm.controls.phone.invalid">
+                    <small *ngIf="contactForm.controls.phone.invalid" class="form-text text-muted">
+                        Vui lòng nhập đúng số điện thoại
+                    </small>
+                </div>
+                <div class="col-12 col-lg-6">
+                    <label>Email:</label>
+                    <input placeholder="Email (chúng tôi có thể liên hệ bằng email)" [class.form-control-invalid]="contactForm.controls.email.invalid"
+                        type="email" formControlName="email" class="form-control">
+                    <small *ngIf="contactForm.controls.email.invalid" class="form-text text-muted">
+                        Vui lòng nhập đúng địa chỉ email
+                    </small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col">
+                    <label>Nội dung:</label>
+                    <textarea placeholder="Bạn muốn nói điều gì?" formControlName="content" class="form-control" rows="4" [class.form-control-invalid]="contactForm.controls.content.invalid"></textarea>
+                    <div class="d-flex justify-content-between w-100">
+                        <small class="form-text text-muted float-left">
+                            {{ contentLength }}/500
+                        </small>
+                        <small *ngIf="contactForm.controls.content.invalid" class="form-text text-muted float-right">
+                            Vui lòng ghi cụ thể vấn đề của bạn (tối thiểu 100 kí tự)
+                        </small>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" [disabled]="!contactForm.valid" (click)="submitContact()" class="hures-btn" style="width:100px;" rippleEffect>Gửi đi</button>
+        </form>
+    </div>
+</div>

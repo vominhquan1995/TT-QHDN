@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    "module": "es2015",
+    "moduleResolution": "node",
+    "target": "es5",
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true, // Workaround for https://github.com/angular/angular/issues/17863. Remove this if you upgrade to a fixed version of Angular.
+    "strict": true,
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "types": [
+      "webpack-env"
+    ],
+    "baseUrl": "ClientApp",
+    "paths": {
+      "@app/*": [
+        "app/app/*"
+      ],
+      "@core/*": [
+        "app/core/*"
+      ],
+      "@services/*": [
+        "app/shared/services/*"
+      ],
+      "@ui/*": [
+        "app/shared/ui/*"
+      ],
+      "@directives/*": [
+        "app/shared/directives/*"
+      ],
+      "@models/*": [
+        "app/shared/models/*"
+      ],
+      "@guards/*": [
+        "app/shared/guards/*"
+      ],"@shared/*":["app/shared/*"]
+    }
+  },
+  "exclude": [
+    "bin",
+    "node_modules"
+  ],
+  "atom": {
+    "rewriteTsconfig": false
+  }
+}

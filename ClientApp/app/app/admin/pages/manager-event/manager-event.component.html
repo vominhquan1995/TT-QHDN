@@ -1,0 +1,100 @@
+<div class="card mb-3" [@routerTransition]>
+    <div class="card-header">Danh sách tài khoản</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn-admin btn-primary" (click)="openCreateUser()">Tạo sự kiện mới</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="form-group filter">
+                    <select class="form-control" [(ngModel)]="numberItemPage" (change)="pageChange()" id="exampleSelect1">
+                      <option [ngValue]="10">10</option>
+                        <option [ngValue]="20">20</option>
+                        <option [ngValue]="50">50</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <select [(ngModel)]="filterStatus" class="btn-admin btn-default dropdown-toggle" (change)="getData()">
+                    <option selected [value]="0">Tình trạng</option>
+                    <option [value]="1">Hết hạn</option>
+                    <option [value]="2">Sắp diễn ra</option>
+                    <option [value]="3">Đang diễn ra</option>
+                </select>
+            </div>
+            <div class="col-md-9">
+                <div class="form-group input-group">
+                    <input type="text" placeholder="Tìm tên sự kiện..." class="form-control" [(ngModel)]="keySearch" (keyup.enter)="getData()">
+                    <span class="input-group-btn">
+                        <button class="btn-admin btn-secondary" type="button" (click)="getData()">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!isLoading">
+            <div class="view-total">
+                Tổng cộng {{totalItem}} dòng được tìm thấy
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped " *ngIf="_data">
+                    <thead>
+                        <tr>
+                            <th class="text-nowrap">STT</th>
+                            <th class="text-nowrap">Tên sự kiện</th>
+                            <th class="text-nowrap">Tiêu đề</th>
+                            <th class="text-nowrap">Mô tả ngắn</th>
+                            <th class="text-nowrap">Địa điểm tổ chức</th>
+                            <th class="text-nowrap">Thời gian BĐ</th>
+                            <th class="text-nowrap">Thời gian KT</th>
+                            <th class="text-nowrap">Hình ảnh</th>
+                            <th class="text-nowrap">Tình trạng</th>
+                            <th colspan="2" class="text-nowrap">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of _data;let i =index">
+                            <td>{{indexRow(i)}}</td>
+                            <td class="cell-sm">{{item.name}}</td>
+                            <td class="cell-sm">{{item.title}}</td>
+                            <td class="text-truncate">{{item.shortDescription}}</td>
+                            <td class="cell-sm">{{item.place}}</td>
+                            <td class="cell-sm">{{item.startTime | date :'dd/MM/yyyy'}}</td>
+                            <td class="cell-sm">{{item.endTime | date :'dd/MM/yyyy'}}</td>
+                            <td>
+                                <img class="image" [src]="item.imageURL">
+                            </td>
+                            <td>
+                                <span [class]="item.classColor" [title]="item.des">{{item.status}}</span>
+                            </td>
+                            <td class="tac-vu">
+                                <a (click)="openEdit(item.id)" placement="top" ngbTooltip="Sửa thông tin">
+                                    <i class=" fa fa-pencil-square-o " aria-hidden="true "></i>
+                                </a>
+                            </td>
+                            <td class="tac-vu">
+                                <a (click)="showConfirmDelete(item.id)" placement="top" ngbTooltip="Xóa">
+                                    <i class="fa fa-times " aria-hidden="true "></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="_data.length==0">
+                            <td colspan="11" class="text-center">Không có dữ liệu</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <ngb-pagination [pageSize]="numberItemPage " [collectionSize]="totalItem " [(page)]="currentPage " [maxSize]="numberPageView "
+                [boundaryLinks]="true " (pageChange)="pageChange() "></ngb-pagination>
+        </div>
+        <admin-loading [isLoader]="isLoading"></admin-loading>
+    </div>
+
+</div>
+<create-event (submitData)="getData() "></create-event>
+<edit-event (submitData)="getData()"></edit-event>

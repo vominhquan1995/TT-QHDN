@@ -1,0 +1,101 @@
+<div class="hures-jobs-details-header">
+  <div class="container">
+    <h1>{{company?.name}}</h1>
+    <p>{{ company?.shortName }} - {{ company?.description }} - {{ company?.representor }}</p>
+  </div>
+</div>
+<div class="container hures-jobs-details-body">
+  <!-- info -->
+  <div class="row">
+    <!-- left -->
+    <div class="col-12 col-lg-8">
+      <div class="jumbotron hures-company-detail-info">
+        <h2>Thông tin</h2>
+        <div class="row">
+          <div class="col-12">
+            <ul>
+              <li>Địa chỉ:
+                <strong>{{ company?.address }}</strong>
+              </li>
+              <hr>
+              <li>Số điện thoại:
+                <strong>{{ company?.phoneNumber }}</strong>
+              </li>
+              <hr>
+              <li>Quy mô:
+                <strong>{{ company?.scales }}</strong>
+              </li>
+              <hr>
+              <li>Đại diện :
+                <strong>{{ company?.representor }}</strong>
+              </li>
+              <hr>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="jumbotron">
+        <div *ngIf="jobRelated$">
+          <div class="hures-container">
+            <div class="row" style="margin: 0.25rem">
+              <!-- <div class="col-md-6"> -->
+              <h3 class="text-center m-2" style="text-align: center">Doanh nghiệp đang tuyển</h3>
+              <!-- </div> -->
+            </div>
+            <div *ngIf="jobRelated$ | async; let jobs; else waiting" class="d-flex flex-column">
+              <ng-container *ngFor="let job of jobs;let i=index">
+                <hure-job [job]="job" class="m-1"></hure-job>
+                <hr style="width:100%;">
+              </ng-container>
+              <h5 class="text-center" *ngIf="jobs.length==0">Không có mục nào</h5>
+            </div>
+            <ng-template #waiting>
+              <hure-waiter></hure-waiter>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- right -->
+    <div class="col-12 col-lg-4">
+      <div class="jumbotron">
+        <ul>
+          <li style="max-height:100%;">
+            <div class="hures-jobs-company-logo-container">
+              <img [src]="company?.urlLogo" [alt]="job?.company.shortName">
+            </div>
+          </li>
+          <hr>
+          <li>
+            Tên doanh nghiệp:
+            <strong>{{ company?.name }} ({{ company?.shortName }})</strong>
+          </li>
+          <hr>
+          <li>
+            Website:
+            <a href="{{ company?.website }}">{{company?.website}}</a>
+          </li>
+          <hr>
+          <li>
+            SĐT:
+            <a href="tel:{{ company?.phoneNumber }}">{{company?.phoneNumber}}</a>
+          </li>
+          <hr>
+          <li>
+            Email:
+            <a href="tel:{{ company?.email }}">{{company?.phoneNumber}}</a>
+          </li>
+        </ul>
+        <hr>
+        <div *ngIf="companyRelated$">
+          <hure-companies-container [companiesObserver]="companyRelated$" size="small" paging="no"  title="Liên quan" limit="10"></hure-companies-container>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div>
+
+  </div>
+
+</div>

@@ -1,0 +1,74 @@
+<div class="hures-main-head">
+    <div class="container">
+        <div class="row hures-nav">
+            <div class="col-lg-2 col-xl-2 col-12 hures-logo-container">
+                <div class="align-middle hures-logo">
+                    <a href="#">
+                        <img src="img/logo.png" alt="Hutech_Logo" class="" style="width: 135px;" />
+                    </a>
+                    <div class="navbar-toggler hures-nav-toggle d-lg-none d-xl-none">
+                        <a class="" rippleEffect data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span>
+                                <i class="fa fa-bars"></i>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 col-lg-10 col-xl-10 ">
+                <nav class="navbar navbar-expand-lg align-middle navbar-light hures-nav-menu">
+                    <div class="collapse navbar-collapse navul-list" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto navul-list-item">
+                            <li *ngFor="let item of navMenu" class="nav-item dropdown" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                                <a class="nav-link text-uppercase  text-center" [routerLink]="item.link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{ item.text }}</a>
+                            </li>
+                            <li *ngIf="!isLoggedIn" class="nav-item dropdonw">
+                                <div class="hures-login-joinus">
+                                    <ul>
+                                        <li class="hures-login" (click)="showForm(false, true)" rippleEffect>
+                                            <span style="cursor: pointer;">
+                                                <i style="cursor: pointer;" class="fa fa-pencil"></i> ĐĂNG KÍ </span>
+                                        </li>
+                                        <li class="hures-signup" (click)="showForm(true, false)" rippleEffect>
+                                            <span style="cursor: pointer;">
+                                                <i style="cursor: pointer;" class="fa fa-sign-in"></i> ĐĂNG NHẬP </span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li *ngIf="isLoggedIn" class="nav-item dropdonw" style="cursor:pointer">
+                                <div class="hures-login-joinus-user">
+                                    <ul class="hures-login-joinus-user-ul">
+                                        <li class="hures-login">
+                                            <hure-popover style="z-index:9999999999999;">
+                                                <img [src]="profile?.avatar" onerror="this.src ='resources/default-avatar.jpg'" alt="" button style="border-radius: 50px;">
+                                                <div popover>
+                                                    <ul style="list-style: none; text-align:left;padding:0px;">
+                                                        <li>
+                                                            <a routerLink="/settings">Cài đặt</a>
+                                                        </li>
+                                                        <li *ngIf="role=='Company'">
+                                                            <a routerLink="/manage-jobs">Tuyển dụng</a>
+                                                        </li>
+                                                        <hr style="margin:10px 10px;">
+                                                        <li (click)="logout()" style="cursor:pointer">Thoát</li>
+                                                    </ul>
+                                                </div>
+                                            </hure-popover>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </nav>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<hure-login *ngIf="isFormShow" [isLogin]="isLogin" [isSignUp]="isSignUp" (close$)="closeLogin($event)"></hure-login>

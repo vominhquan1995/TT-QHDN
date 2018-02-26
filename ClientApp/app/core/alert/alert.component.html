@@ -1,0 +1,16 @@
+<div *ngIf="isActivated" class="flex-column-reverse alert-container">
+    <div [@alertShowChanged] *ngFor="let a of alertList" class="alert-box" role="alert">
+        <div class="icon" [class.bg-success]="type=='success'" [class.bg-danger]="type=='danger'" [class.bg-warning]="type=='warning'">
+            <i *ngIf="type=='success'" class="fa fa-check" style="color:white"></i>
+            <i *ngIf="type=='danger'" class="fa fa-times-circle-o" style="color:white"></i>
+            <i *ngIf="type=='warning'" class="fa fa-exclamation-triangle" style="color:white"></i>
+        </div>
+        <div class="body">
+            <span (click)="close(a)"  style="float:right;cursor:pointer;">
+                <i class="fa fa-times"></i>
+            </span>
+            <h5>{{a.title}}</h5>
+            <p style="cursor:pointer" (click)="exec(a)">{{a.message}}</p>
+        </div>
+    </div>
+</div>

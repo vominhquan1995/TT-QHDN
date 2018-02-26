@@ -1,0 +1,154 @@
+<div class="card mb-3" [@routerTransition]>
+    <div class="card-header">Danh Sách Tuyển Dụng</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn-admin btn-primary" (click)="goToCreate()">Thêm tin tuyển dụng</button>
+            </div>
+            <div class="col-md-2">
+                <button class="btn-admin btn-info" (click)="changeModeView()">{{ (isReport) ? 'Chế độ hiển thị dữ liệu' : 'Chế độ hiển thị thống kê'}}</button>
+            </div>
+        </div>
+        <br>
+        <!-- <div class="row">
+            <div class="col-md-12">
+                <admin-dropdown [Title]="'Tất cả doanh nghiệp'" [Models]="companies" [ValueShow]="'name'" [ValueSelect]="'id'" (valueChange)="companyChange($event)"></admin-dropdown>
+            </div>
+        </div>
+        <br> -->
+        <div class="row">
+            <div class="col-md-4">
+                <select [(ngModel)]="filterStatus" class="btn-admin btn-default dropdown-toggle" (change)="getData()">
+                    <option selected [value]="0">Trạng thái</option>
+                    <option [value]="1">Đã duyệt</option>
+                    <option [value]="2">Chờ duyệt</option>
+                </select>
+            </div>
+            <div class="col-md-4">
+                <admin-dropdown [Title]="'Tất cả loại hình'" [Models]="worktypes" [ValueShow]="'name'" [ValueSelect]="'id'" (valueChange)="worktypeChange($event)"></admin-dropdown>
+            </div>
+            <div class="col-md-4">
+                <admin-dropdown [Title]="'Tất cả nhóm ngành'" [Models]="jobgroups" [ValueShow]="'name'" [ValueSelect]="'id'" (valueChange)="jobgroupChange($event)"></admin-dropdown>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="form-group filter">
+                    <select class="form-control" [(ngModel)]="numberItemPage" (change)="pageChange()" id="exampleSelect1">
+                        <option [ngValue]="5">5</option>
+                        <option [ngValue]="10">10</option>
+                        <option [ngValue]="20">20</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-11">
+                <div class="form-group input-group">
+                    <input type="text" placeholder="Tìm tên việc, tên Doanh nghiệp, tên viêt tắt.." class="form-control" [(ngModel)]="keySearch" (keyup.enter)="getData()">
+                    <span class="input-group-btn">
+                        <button class="btn-admin btn-secondary" type="button" (click)="getData()">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!isLoading">
+            <div class="view-total">
+                Tổng cộng {{totalItem}} dòng được tìm thấy
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped " *ngIf="_data && !isReport">
+                    <thead>
+                        <tr>
+                            <th class="text-nowrap">STT</th>
+                            <th class="text-nowrap">Tiêu đề</th>
+                            <th class="text-nowrap">Vị trí</th>
+                            <th class="text-nowrap">Nhóm ngành</th>
+                            <th class="text-nowrap">Loại hình</th>
+                            <th class="text-nowrap">Doanh nghiệp</th>
+                            <th class="text-nowrap">Địa điểm</th>
+                            <th class="text-nowrap">Hạn nộp</th>
+                            <th class="text-nowrap">Trạng thái</th>
+                            <th class="text-nowrap">Xét duyệt</th>
+                            <th colspan="3" class="text-nowrap">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of _data;let i =index">
+                            <td>{{indexRow(i)}}</td>
+                            <td>{{item.title}}</td>
+                            <td class="cell-sm">{{item.position}}</td>
+                            <td>{{item.jobGroup.name}}</td>
+                            <td class="cell-sm">{{item.workType.name}}</td>
+                            <td>{{item.company.name}}</td>
+                            <td>{{item.place}}</td>
+                            <td>{{item.deadlineApply | date : 'dd/MM/yyyy'}}</td>
+                            <td>
+                                <span [class]="item.classColor" [title]="item.des">{{item.status}}</span>
+                            </td>
+                            <td class="text-center">
+                                <a *ngIf="item.isShowActivate" (click)="activate(item)" placement="top" ngbTooltip="Duyệt tin này">
+                                    <i class=" fa fa-lock" aria-hidden="true "></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a (click)="viewDetail(item)" placement="top" ngbTooltip="Xem chi tiết">
+                                    <i class=" fa fa-eye " aria-hidden="true "></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a (click)="goToEdit(item.id)" placement="top" ngbTooltip="Sửa thông tin">
+                                    <i class=" fa fa-pencil-square-o " aria-hidden="true "></i>
+                                </a>
+                            </td>
+                            <td>
+                                <a (click)="deleteJob(item.id)" placement="top" ngbTooltip="Xóa tài khoản">
+                                    <i class="fa fa-times " aria-hidden="true "></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="_data.length==0">
+                            <td colspan="13" class="text-center">Không có dữ liệu</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-hover table-striped " *ngIf="_data && isReport">
+                    <thead>
+                        <tr>
+                            <th class="text-nowrap">STT</th>
+                            <th class="text-nowrap">Tiêu đề</th>
+                            <th class="text-nowrap">Doanh nghiệp</th>
+                            <th class="text-nowrap">Số nộp hồ sơ</th>
+                            <th class="text-nowrap">Nhà tuyển xem</th>
+                            <th class="text-nowrap">Được hẹn phỏng vấn</th>
+                            <th class="text-nowrap">Được tuyển</th>
+                            <th class="text-nowrap">Không đủ điều kiện</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of _data;let i =index">
+                            <td>{{indexRow(i)}}</td>
+                            <td>{{item.title}}</td>
+                            <td>{{item.company.name}}</td>
+                            <td class="text-center">{{item.appliedCount}}</td>
+                            <td class="text-center">{{item.viewCount}}</td>
+                            <td class="text-center">{{item.interviewCount}}</td>
+                            <td class="text-center">{{item.passCount}}</td>
+                            <td class="text-center">{{item.failCount}}</td>
+                        </tr>
+                        <tr *ngIf="_data.length==0">
+                            <td colspan="8" class="text-center">Không có dữ liệu</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <ngb-pagination [pageSize]="numberItemPage " [collectionSize]="totalItem " [(page)]="currentPage " [maxSize]="numberPageView "
+                [boundaryLinks]="true " (pageChange)="pageChange() "></ngb-pagination>
+        </div>
+        <admin-loading [isLoader]="isLoading"></admin-loading>
+    </div>
+
+</div>
+<detail-job> </detail-job>

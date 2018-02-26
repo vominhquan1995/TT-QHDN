@@ -1,0 +1,46 @@
+@import "~styles/variables";
+form {
+    .invalid {
+        border-color: red !important;
+        transition: border-color .5s ease-in;
+    }
+    .input-group {
+        border: 1px solid rgba($color: gray, $alpha: 0.6);
+        background: white;
+        padding: 4px;
+        margin: 8px 0;
+        height: 44px;
+        .input-group-addon {
+            background: white;
+            border: 0;
+            border-radius: 0;
+            i {
+                color: gray;
+            }
+        }
+        input[type] {
+            outline: none;
+            border: 0;
+            width: 100%;
+            border-radius: 0;
+            font-family: "Montserrat-Thin", sans-serif;
+        }
+    }
+    .hures-search-btn {
+        background: $main-color;
+        color: white;
+        height: 44px;
+        margin: 8px 0;
+        border: 0;
+        width: 100%;
+        font-family: "Montserrat", sans-serif;
+        padding: 4px 32px;
+    }
+    a {
+        margin: 8px 0;
+        span {
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+    }
+}

@@ -1,0 +1,29 @@
+<div class="hures-search-outer">
+    <div class="container hures-search-container">
+        <div class="row hures-search">
+            <div class="col-12 col-xl-5 col-lg-4 col-md-6">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">
+                        <i class="fa fa-search"></i>
+                    </span>
+                    <input type="text" (keyup.enter)="onSubmit()" placeholder="Từ khóa..." aria-label="Username" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div class="col-12 col-xl-5 col-lg-4 col-md-6">
+                <div class="input-group">
+                    <span class="input-group-addon" id="basic-addon1">
+                        <i class="fa fa-chevron-down"></i>
+                    </span>
+                    <hure-dropdown class="w-100" placeholder="Ngành nghề...">
+                        <ng-container *ngFor="let item of data">
+                            <hure-dropdown-item [text]="item.text" [value]="item.value" [isSelected]="item.isSelected"></hure-dropdown-item>
+                        </ng-container>
+                    </hure-dropdown>
+                </div>
+            </div>
+            <div class="col-12 col-xl-2 col-lg-4">
+                <button class="hures-search-btn" disabled="disabled" rippleEffect>TÌM KIẾM</button>
+            </div>
+        </div>
+    </div>
+</div>

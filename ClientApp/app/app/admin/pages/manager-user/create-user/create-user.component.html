@@ -1,0 +1,61 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Tạo Tài Khoản Mới</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form role="form" #formCreate="ngForm" (ngSubmit)="create(formCreate)" ngNativeValidate>
+            <div class="form-group has-danger">
+                <label class="form-control-label">Phân quyền</label>
+                <admin-dropdown [Title]="'Chọn phân quyền'" [Models]="roles" [ValueShow]="'name'" [ValueSelect]="'id'" (valueChange)="roleChange($event)"></admin-dropdown>
+            </div>
+            <div class="form-group has-danger" *ngIf="isShowCompany">
+                <label class="form-control-label">Tài khoản cho doanh nghiệp</label>
+                <admin-dropdown [Title]="'Chọn doanh nghiệp'" [Models]="companies" [ValueShow]="'name'" [ValueSelect]="'id'" (valueChange)="companyChange($event)"></admin-dropdown>
+            </div>
+            <div class="form-group has-success">
+                <label class="form-control-label" for="username">Tên tài khoản</label>
+                <input type="text" ngModel name="Username" class="form-control form-control-success" id="username" required>
+            </div>
+
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="FullName">Họ và tên </label>
+                <input type="text" ngModel name="FullName" class="form-control form-control-warning" id="FullName" required>
+            </div>
+            <div class="form-group has-danger">
+                <label class="form-control-label" for="email">Email</label>
+                <input type="Email" ngModel name="Email" class="form-control form-control-danger" id="email" required>
+            </div>
+            <div class="form-group has-danger">
+                <label class="form-control-label" for="Mssv">Mã số sinh viên (Nếu có)</label>
+                <input type="text" ngModel name="Mssv" class="form-control form-control-danger" id="Mssv" required>
+            </div>
+            <div class="form-group has-danger">
+                <label class="form-control-label" for="Department">Khoa (Nếu có)</label>
+                <input type="text" ngModel name="Department" class="form-control form-control-danger" id="Department" required>
+            </div>
+            <div class="form-group has-danger">
+                <label class="form-control-label">Giới Tính</label>
+                <admin-sex-select (sexSelected)="sexChange($event)"></admin-sex-select>
+            </div>
+            <div class="form-group has-danger">
+                <!-- <label class="form-control-label">Ngày sinh</label> -->
+                <admin-date-picker (timeChange)="timeChange($event)"></admin-date-picker>
+            </div>
+            <div class="form-group has-danger">
+                <admin-switch-button [Title]="'Kích hoạt'" [value]="true" (valueChanged)="statusChange($event)"></admin-switch-button>
+            </div>
+            <div>
+                * Mật khẩu mặc định : 0123456789
+            </div>
+            <hr>
+            <ngb-alert [type]="error.type" (close)="error.mess =''" *ngIf="error.mess != ''">{{ error.mess }}</ngb-alert>
+            <div class="modal-footer">
+                <button type="submit" class="btn-admin btn-primary">Lưu</button>
+                <button type="button" class="btn-admin btn-secondary" (click)="close() ">Hủy</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

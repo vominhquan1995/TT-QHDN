@@ -1,0 +1,9 @@
+<div class="container mt-5">
+  <h4 class="text-uppercase text-center">Sự kiện</h4>
+  <hr>
+  <div *ngIf="relatedEvents" class="row">
+    <div *ngFor="let item of relatedEvents" class="col-12 col-md-4 p-4">
+      <hure-event-card [event]="item"></hure-event-card>
+    </div>
+  </div>
+</div>

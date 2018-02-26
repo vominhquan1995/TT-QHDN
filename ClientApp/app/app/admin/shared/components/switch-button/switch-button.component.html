@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label for="switch-sm">{{Title}}&nbsp;</label>
+    <span class="switch-admin switch-sm">
+        <input type="checkbox" [(ngModel)]="value" (change)="change()" class="switch-admin" id="switch-sm">
+        <label for="switch-sm"></label>
+        <label>{{value ? 'Có' : 'Không'}}</label>
+    </span>
+</div>

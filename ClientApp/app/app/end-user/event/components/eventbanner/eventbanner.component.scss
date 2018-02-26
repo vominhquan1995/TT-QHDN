@@ -1,0 +1,60 @@
+@import "~styles/variables";
+.hures-event-bg{
+    width: 100%;
+    height:150px;
+    background-color: $main-color-60;
+    width:100%;
+    position: relative;
+    margin-bottom: 20px;
+    .hures-event-bg-info{
+        position: absolute;
+        width:60%;
+        color:white;
+        top:50%;
+        left:50%;
+        transform: translate(-50%,-50%);
+        .big-info{
+            text-align: center;
+        }
+        .mini-info{
+     
+            text-align: center;
+        }
+    }
+}
+@media screen and (max-width: 975px){
+    .hures-event-bg{  
+        .hures-event-bg-info{
+            .big-info{
+                font-size:30px;
+            }
+            .mini-info{
+                font-size: 18px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 517px){
+    .hures-event-bg{  
+        .hures-event-bg-info{
+            .big-info{
+                font-size:25px;
+            }
+            .mini-info{
+                font-size: 18px;
+            }
+        }
+    }
+}
+@media screen and (max-width: 450px){
+    .hures-event-bg{  
+        .hures-event-bg-info{
+            .big-info{
+                font-size:20px;
+            }
+            .mini-info{
+                font-size: 15px;
+            }
+        }
+    }
+}

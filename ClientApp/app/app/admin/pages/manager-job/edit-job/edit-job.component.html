@@ -1,0 +1,81 @@
+<div class="card mb3">
+    <div class="card-header">Sửa tin tuyển dụng</div>
+    <div class="card-body" *ngIf="jobModel">
+        <form role="form" #formCreate="ngForm" (ngSubmit)="save()" ngNativeValidate>
+            <div class="form-group has-success">
+                <label class="form-control-label" for="title">Tiêu đề</label>
+                <input type="text" [(ngModel)]="jobModel.title" name="Title" class="form-control form-control-success" id="title" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Position ">Vị trí tuyển dụng</label>
+                <input type="text" [(ngModel)]="jobModel.position" name="Position" class="form-control form-control-warning" id="Position"
+                    maxlength="200" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Number">Số lượng cần tuyển</label>
+                <input type="text" [(ngModel)]="jobModel.number" name="Number" class="form-control form-control-warning" id="Number" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Place">Địa điểm làm việc</label>
+                <input type="text" [(ngModel)]="jobModel.place" name="Place" class="form-control form-control-warning" id="Place" required>
+            </div>
+            <div class="form-group has-danger">
+                <label class="form-control-label">Doanh Nghiệp</label>
+                <admin-dropdown [Title]="'Chọn doanh nghiệp'" [currentValue]="jobModel.companyId" [Models]="companies" [ValueShow]="'name'"
+                    [ValueSelect]="'id'" (valueChange)="companyChange($event)"></admin-dropdown>
+            </div>
+            <div class="form-group has-danger">
+                <label class="form-control-label">Loại hình làm việc</label>
+                <admin-dropdown [Title]="'Chọn loại hình'" [currentValue]="jobModel.workTypeId" [Models]="worktypes" [ValueShow]="'name'"
+                    [ValueSelect]="'id'" (valueChange)="worktypeChange($event)"></admin-dropdown>
+            </div>
+            <div class="form-group has-danger">
+                <label class="form-control-label">Nhóm ngành</label>
+                <admin-dropdown [Title]="'Chọn nhóm ngành'" [currentValue]="jobModel.jobGroupId" [Models]="jobgroups" [ValueShow]="'name'"
+                    [ValueSelect]="'id'" (valueChange)="jobgroupChange($event)"></admin-dropdown>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="ShortDescription">Mô tả ngắn</label>
+                <input type="text" [(ngModel)]="jobModel.shortDescription" name="ShortDescription" class="form-control form-control-warning"
+                    id="ShortDescription" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="description">Mô tả</label>
+                <admin-ckeditor [ckeditorContent]="jobModel.contentURL"></admin-ckeditor>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Experience ">Kinh nghiệm ( theo năm)</label>
+                <input type="text" [(ngModel)]="jobModel.experience" name="Experience" class="form-control form-control-warning" id="Experience"
+                    maxlength="100" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Benefit">Quyền lợi</label>
+                <input type="text" [(ngModel)]="jobModel.benefit" name="Benefit" class="form-control form-control-warning" id="Benefit" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="TimePre">Thời gian làm việc(nếu có)</label>
+                <input type="text" [(ngModel)]="jobModel.timePre" name="TimePre" maxlength="200" class="form-control form-control-warning"
+                    id="TimePre">
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Salary">Mức lương (Nếu có)</label>
+                <input type="text" [(ngModel)]="jobModel.salary" name="Salary" maxlength="200" class="form-control form-control-warning"
+                    id="Salary">
+            </div>
+            <div class="form-group has-danger">
+                <label class="form-control-label">Hạn nộp hồ sơ</label>
+                <admin-date-picker [currentValue]="jobModel.deadlineApply
+                " (timeChange)="timeChange($event)"></admin-date-picker>
+            </div>
+            <div class="form-group has-danger">
+                <admin-switch-button [Title]="'Đánh dấu nổi bật'" [value]="jobModel.isHot" (valueChanged)="jobModel.isHot=$event"></admin-switch-button>
+            </div>
+            <hr>
+            <ngb-alert [type]="error.type" (close)="error.mess =''" *ngIf="error.mess != ''">{{ error.mess }}</ngb-alert>
+            <div class="modal-footer">
+                <button type="submit" class="btn-admin btn-primary">Lưu</button>
+                <button type="button" class="btn-admin btn-secondary" (click)="back()">Quay lại</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+.hures-carousel {
+    position: relative;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    border-width: .2rem;
+    min-height: 50px;
+    .w-100{
+        // object-fit: cover;
+        max-height: 500px;
+    }
+    .carousel-caption{
+        width: 100%;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background: rgba($color: #000000, $alpha: 0.2)
+    }
+}

@@ -1,0 +1,36 @@
+@import "~styles/variables";
+.hures-dropdown-container {
+    margin: 4px;
+    .hures-dropdown {
+        outline: 0;
+        border: 0;
+        font-family: "Montserrat-Thin", sans-serif;
+        color: gray;
+    }
+    .hures-picker {
+        height: 400px;
+        max-width: 320px;
+        width: 100%;
+        background: white;
+        a {
+            &:hover {
+                background: $main-color;
+                color: white;
+            }
+        }
+        div{
+            .hures-picker-items{
+                height: calc(400px - 56px);
+            }
+        }
+    }
+    .hures-dropdown-close-btn {
+        background: $main-color;
+        color: white;
+        height: 44px;
+        border: 0;
+        width: 100%;
+        font-family: "Montserrat", sans-serif;
+        padding: 4px 32px;
+    }
+}

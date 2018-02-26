@@ -1,0 +1,38 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Tạo Nhóm Nghề Mới</h4>
+        <button type="button" class="close" aria-label="Close" (click)="close()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form role="form" #formCreate="ngForm" (ngSubmit)="create(formCreate)" ngNativeValidate>
+            <div class="form-group has-success">
+                <label class="form-control-label" for="TitleParent">Tiêu đề cha</label>
+                <input type="text" ngModel name="TitleParent" class="form-control form-control-success" id="TitleParent" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="TitleChild">Tiêu đề con</label>
+                <input type="text" ngModel name="TitleChild" class="form-control form-control-warning" id="TitleChild" required>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label" for="Index">Thứ tự</label>
+                <input type="number" min="1" max="10" ngModel name="Index" class="form-control form-control-warning" id="Index" required>
+                <label>* Từ 1 đến 10</label>
+            </div>
+            <div class="form-group has-danger">
+                <admin-switch-button [Title]="'Hiển thị'" [value]="true" (valueChanged)="statusChange($event)"></admin-switch-button>
+            </div>
+            <div class="form-group has-warning">
+                <label class="form-control-label">Hình ảnh</label>
+                <admin-upload-file (uploadSuccess)="ImageURL=$event"></admin-upload-file>
+            </div>
+            <hr>
+            <ngb-alert [type]="error.type" (close)="error.mess =''" *ngIf="error.mess != ''">{{ error.mess }}</ngb-alert>
+            <div class="modal-footer">
+                <button type="submit" class="btn-admin btn-primary">Lưu</button>
+                <button type="button" class="btn-admin btn-secondary" (click)="close() ">Hủy</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

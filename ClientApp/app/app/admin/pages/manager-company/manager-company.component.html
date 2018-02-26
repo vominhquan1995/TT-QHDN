@@ -1,0 +1,130 @@
+<div class="card mb-3" [@routerTransition]>
+    <div class="card-header">Danh sách doanh nghiệp</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <button class="btn-admin btn-primary" (click)="openCreateUser()">Thêm doanh nghiệp</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-1">
+                <div class="form-group filter">
+                    <select class="form-control" [(ngModel)]="numberItemPage" (change)="pageChange()" id="exampleSelect1">
+                      <option [ngValue]="10">10</option>
+                        <option [ngValue]="20">20</option>
+                        <option [ngValue]="50">50</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <select [(ngModel)]="filterStatus" class="btn-admin btn-default dropdown-toggle" (change)="getData()">
+                    <option selected [value]="0">Trạng thái</option>
+                    <option [value]="1">Đã duyệt</option>
+                    <option [value]="2">Chờ duyệt</option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <select [(ngModel)]="filterPartner" class="btn-admin btn-default dropdown-toggle" (change)="getData()">
+                    <option selected [value]="0">Loại doanh nghiệp</option>
+                    <option [value]="1">Đối tác</option>
+                    <option [value]="2">Không là đối tác</option>
+                </select>
+            </div>
+            <div class="col-md-7">
+                <div class="form-group input-group">
+                    <input type="text" placeholder="Tìm tên hoặc tên viết tắt doanh nghiệp..." class="form-control" [(ngModel)]="keySearch" (keyup.enter)="getData()">
+                    <span class="input-group-btn">
+                        <button class="btn-admin btn-secondary" type="button" (click)="getData()">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!isLoading">
+            <div class="view-total">
+                Tổng cộng {{totalItem}} dòng được tìm thấy
+            </div>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped " *ngIf="_data">
+                    <thead>
+                        <tr>
+                            <th class="text-nowrap">STT</th>
+                            <th class="text-nowrap">Tên Doanh nghiệp</th>
+                            <th class="text-nowrap">Tên viết tắt</th>
+                            <!-- <th class="text-nowrap">Mô tả</th> -->
+                            <!--<th class="text-nowrap">Địa chỉ</th>-->
+                            <th class="text-nowrap">Quy mô</th>
+                            <th class="text-nowrap">Người đại diện</th>
+                            <th class="text-nowrap">Số điện thoại</th>
+                            <!-- <th class="text-nowrap">Website</th> -->
+                            <th class="text-nowrap text-center">Logo</th>
+                            <th class="text-nowrap">Đối tác</th>
+                            <th class="text-nowrap text-center">Tình trạng</th>
+                            <th class="text-nowrap text-center">Duyệt</th>
+                            <th colspan="3" class="text-nowrap">Tác vụ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of _data;let i =index">
+                            <td>{{indexRow(i)}}</td>
+                            <td class="cell-sm">{{item.name}}</td>
+                            <td class="cell-sm">{{item.shortName}}</td>
+                            <!-- <td class="text-truncate">{{item.description}}</td> -->
+                            <!--<td class="text-truncate">{{item.address}}</td>-->
+                            <td class="cell-sm">{{item.scales}}</td>
+                            <td class="cell-sm">{{item.representor}}</td>
+                            <td class="cell-sm">{{item.phoneNumber}}</td>
+                            <!-- <td class="text-truncate-sm">{{item.website}}</td> -->
+                            <td>
+                                <img class="image" [src]="item.urlLogo">
+                            </td>
+                            <td class="text-center">
+                                <span>
+                                <i [class.fa-check]="item?.isPartner" class="fa"></i>
+                            </span>
+                            </td>
+                            <td class="cell-sm text-center">
+                                <span *ngIf="item?.status==Status.Active" class="badge badge-success">Hoạt động</span>
+                                <span *ngIf="item?.status==Status.Waiting" class="badge badge-warning">Đang chờ</span>
+                            </td>
+                            <td class="text-center">
+                                <a (click)="showConfirmActivate(item.id,item)" placement="top" ngbTooltip="Duyệt/Ẩn">
+                                    <i class="fa fa-unlock-alt" *ngIf="item?.status==Status.Waiting" aria-hidden="true"></i>
+                                    <i class="fa fa-lock" *ngIf="item?.status==Status.Active" aria-hidden="true"></i>
+                                </a>
+                            </td>
+                            <td class="tac-vu">
+                                <a (click)="openDetail(item)" placement="top" ngbTooltip="Xem chi tiết">
+                                    <i class=" fa fa-eye" aria-hidden="true "></i>
+                                </a>
+                            </td>
+                            <td class="tac-vu">
+                                <a (click)="openEdit(item.id)" placement="top" ngbTooltip="Sửa thông tin">
+                                    <i class=" fa fa-pencil-square-o " aria-hidden="true "></i>
+                                </a>
+                            </td>
+                            <td class="tac-vu">
+                                <a (click)="showConfirmDelete(item.id)" placement="top" ngbTooltip="Xóa">
+                                    <i class="fa fa-times " aria-hidden="true "></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr *ngIf="_data.length==0">
+                            <td colspan="13" class="text-center">Không có dữ liệu</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+            <ngb-pagination [pageSize]="numberItemPage " [collectionSize]="totalItem " [(page)]="currentPage " [maxSize]="numberPageView "
+                [boundaryLinks]="true " (pageChange)="pageChange() "></ngb-pagination>
+        </div>
+        <admin-loading [isLoader]="isLoading"></admin-loading>
+    </div>
+
+</div>
+<create-company (submitData)="getData() "></create-company>
+<edit-company (submitData)="getData()"></edit-company>
+<detail-company></detail-company>

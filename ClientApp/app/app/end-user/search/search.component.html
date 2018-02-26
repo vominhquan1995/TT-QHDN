@@ -1,0 +1,40 @@
+<div class="hures-s-search-container">
+  <hure-search-bar class="m-2"></hure-search-bar>
+</div>
+<div class="container">
+  <div class="hures-container">
+    <div class="row">
+      <div class="col-12 col-lg-7 ">
+        <div class="jumbotron">
+          <div *ngIf="jobs$ | async; let jobs; else waiting" class="d-flex flex-column">
+            <h3>Có {{ jobs.length }} kết quả phù hợp.</h3>
+            <ng-container *ngFor="let job of jobs| paginate: { itemsPerPage: limit, currentPage: page } ;let i=index">
+              <hure-job [job]="job" class="m-1"></hure-job>
+              <hr style="width:100%;">
+            </ng-container>
+            <div class="has-text-centered">
+              <pagination-controls (pageChange)="page = $event" autoHide="true" previousLabel="Trước" nextLabel="Sau"></pagination-controls>
+            </div>
+          </div>
+          <ng-template #waiting>
+            <hure-waiter></hure-waiter>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-12 col-lg-5">
+        <div class="jumbotron">
+          <div *ngIf="jobsHot$ | async; let jobsHot; else waiting" class="d-flex flex-column">
+            <h3>Có {{ jobsHot.length }} công việc đang hot.</h3>
+            <ng-container *ngFor="let job of jobsHot">
+              <hure-job [job]="job" class="m-1"></hure-job>
+              <hr style="width:100%;">
+            </ng-container>
+          </div>
+          <ng-template #waiting>
+            <hure-waiter></hure-waiter>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

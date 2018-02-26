@@ -1,0 +1,44 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h5 class="modal-title" style="text-align: center">{{model.title}}</h5>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td colspan="2">Vị trí tuyển : {{model.position}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">Nhóm ngành : {{model.jobGroup.name}}</td>
+                </tr>
+                <tr>
+                    <td>Loại hình làm việc : {{model.workType.name}}</td>
+                    <td>Doanh nghiệp : {{model.company.name}}</td>
+                </tr>
+                <tr>
+                    <td>Số lượng : {{model.number}}</td>
+                    <td>Địa điểm : {{model.place}}</td>
+                </tr>
+                <tr>
+                    <td>Kinh nghiệm :{{model.experience}}</td>
+                    <td>Mức lương : {{model.salary}}</td>
+                </tr>
+                <tr>
+                    <td>Thời gian thử việc : {{model.timePre}}</td>
+                    <td>Hạn nộp hồ sơ {{model.deadlineApply | date :'dd/MM/yyyy'}}</td>
+                    <td colspan="2"></td>
+                </tr>
+                <tr>
+                    <td>Lượt xem : {{model.viewCount}}</td>
+                    <td>Lượt nộp hồ sơ : {{model.appliedCount}}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">{{model.isHot ? 'Đây là công việc nổi bật' : 'Không là công việc nổi bật'}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-template>

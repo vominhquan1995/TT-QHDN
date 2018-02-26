@@ -1,0 +1,76 @@
+<ng-template #edit let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">Chỉnh Sửa Thông Tin</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <form role="form" ngNativeValidate>
+            <div class="form-group has-danger">
+                <label class="form-control-label">Phân quyền</label>
+                <admin-dropdown [Title]="'Chọn phân quyền'" [currentValue]="userModel.roleId" [Models]="roles" [ValueShow]="'name'" [ValueSelect]="'id'"
+                    (valueChange)="roleChange($event)"></admin-dropdown>
+            </div>
+            <div class="form-group has-danger" *ngIf="isShowCompany">
+                <label class="form-control-label">Tài khoản cho doanh nghiệp</label>
+                <admin-dropdown [Title]="'Chọn doanh nghiệp'" [currentValue]="userModel.companyId" [Models]="companies" [ValueShow]="'name'"
+                    [ValueSelect]="'id'" (valueChange)="companyChange($event)"></admin-dropdown>
+            </div>
+            <div class="form-group has-danger">
+                <admin-switch-button [Title]="'Kích hoạt'" [value]="userModel.isActivated" (valueChanged)="userModel.isActivated=$event"></admin-switch-button>
+            </div>
+            <div class="form-group ">
+                <label class="form-control-label" for="username">Tên tài khoản</label>
+                <input type="text" [(ngModel)]="userModel.username" name="Username" class="form-control form-control-success" id="username"
+                    required>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="FullName">Họ và tên </label>
+                <input type="text" [(ngModel)]="userModel.fullName" name="FullName" class="form-control form-control-warning" id="FullName"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label" for="email">Email</label>
+                <input type="Email" [(ngModel)]="userModel.email" name="Email" class="form-control form-control-danger" id="email" required>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="Mssv">Mã số sinh viên (Nếu có) </label>
+                <input type="text" [(ngModel)]="userModel.mssv" name="Mssv" class="form-control form-control-warning" id="Mssv" required>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="Department">Khoa (Nếu có) </label>
+                <input type="text" [(ngModel)]="userModel.department" name="Department" class="form-control form-control-warning" id="Department"
+                    required>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="sdt">Số điện thoại</label>
+                <input type="text" [(ngModel)]="userModel.phoneNumber" name="sdt" class="form-control form-control-danger" id="sdt">
+            </div>
+            <div class="form-group">
+                <label class="form-control-label" for="class">Lớp</label>
+                <input type="text" [(ngModel)]="userModel.class" name="class" class="form-control form-control-danger" id="class">
+            </div>
+
+            <div class="form-group">
+                <label class="form-control-label" for="address">Địa chỉ</label>
+                <input type="text" [(ngModel)]="userModel.address" name="address" class="form-control form-control-danger" id="address">
+            </div>
+            <div class="form-group">
+                <label class="form-control-label">Giới tính</label>
+                <admin-sex-select [valueDefault]="userModel.sex" (sexSelected)="userModel.sex=$event"></admin-sex-select>
+            </div>
+            <div class="form-group">
+                <label class="form-control-label">Ngày sinh</label>
+                <admin-date-picker [currentValue]="userModel.dateOfBirth" (timeChange)="timeChange($event)"></admin-date-picker>
+            </div>
+            <hr>
+            <ngb-alert [type]="error.type" (close)="error.mess =''" *ngIf="error.mess != ''">{{ error.mess }}</ngb-alert>
+            <div class="modal-footer">
+                <button type="submit" class="btn-admin btn-primary" (click)="save()">Lưu</button>
+                <button type="button" class="btn-admin btn-secondary" (click)="c('Close click')">Hủy</button>
+            </div>
+        </form>
+    </div>
+</ng-template>

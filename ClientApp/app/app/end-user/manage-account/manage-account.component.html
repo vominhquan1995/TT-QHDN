@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="jumbotron" style="min-height:640px;">
+    <div class="row" style=" height:100%;padding:16px;">
+      <div class="col-3 hures-manage-account-list">
+        <ul class="list-group">
+          <ng-container *ngFor="let item of menus">
+            <li *ngIf="item.role==role" class="list-group-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+              <a [routerLink]="[item.link]" >
+                <div>
+                  {{ item.text | uppercase }}
+                </div>
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      <div class="col-8" style="border-left: solid 1px gray; height:100%;margin-left:16px;padding-left:16px !important;">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>

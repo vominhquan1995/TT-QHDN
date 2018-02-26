@@ -1,0 +1,16 @@
+<div class="w-100 hures-dropdown-container">
+    <div class="hures-dropdown w-100" (click)="isActivated=!isActivated">
+        <p *ngIf="selectedItem">{{ selectedItem.text | limitText:25 }}</p>
+        <p *ngIf="!selectedItem">{{ placeholder | limitText:25 }}</p>
+    </div>
+    <hure-overlay [isActivated]="isActivated">
+        <div class="hures-picker">
+            <div class="h-100" style="padding:8px">
+                <div class="hures-picker-items" style="overflow-y:auto; overflow-x:hidden;">
+                    <ng-content></ng-content>
+                </div>
+                <button class="hures-dropdown-close-btn" (click)="isActivated=!isActivated" rippleEffect>Close</button>
+            </div>
+        </div>
+    </hure-overlay>
+</div>

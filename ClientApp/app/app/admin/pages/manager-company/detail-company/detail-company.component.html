@@ -1,0 +1,61 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h5 class="modal-title" style="text-align: center">Doanh nghiệp {{model.name}}</h5>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td class="text-nowrap">Địa chỉ</td>
+                    <td>{{model.address}}</td>
+                </tr>
+                <tr>
+                    <td class="text-nowrap">Mô tả</td>
+                    <td>
+                        {{model.description}}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="text-nowrap">Quy mô</td>
+                    <td>{{model.scales}}</td>
+                </tr>
+                <tr>
+                    <td class="text-nowrap">Người đại diện</td>
+                    <td> {{model.representor}}</td>
+                </tr>
+                <tr>
+                    <td class="text-nowrap">Số điện thoại</td>
+                    <td> {{model.phoneNumber}}</td>
+                </tr>
+                <tr>
+                    <td class="text-nowrap">Email</td>
+                    <td> {{model.email}}</td>
+                </tr>
+                <tr>
+                    <td class="text-nowrap">Mã số thuế</td>
+                    <td> {{model.taxCode}}</td>
+                </tr>
+                <tr>
+                    <td class="text-nowrap">Website</td>
+                    <td>{{model.website}}</td>
+                </tr>
+                <tr>
+                    <td class="text-nowrap">Logo</td>
+                    <td>
+                        <img [src]="model.urlLogo" class="logo-company">
+                    </td>
+
+                </tr>
+                <tr>
+                    <td class="text-nowrap">Khác</td>
+                    <td>
+                        <span *ngIf="model.isPartner">Là đối tác</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</ng-template>

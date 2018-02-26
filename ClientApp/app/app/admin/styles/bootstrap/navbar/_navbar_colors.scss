@@ -1,0 +1,54 @@
+
+//nav custom 
+#mainNav.navbar-custom {
+  .navbar-collapse {
+    .navbar-sidenav {
+      .nav-link-collapse:after {
+        color: $gray-600;
+      }
+      > .nav-item {
+        margin: 5px;
+        > .router-link-active
+        {
+          background-color: $gray-background;
+          color: black !important;
+          &:hover 
+          {
+            color: white !important;
+          }
+        }
+        > .nav-link {
+          color: white;
+          &:hover {
+            color: white;
+            background-color:$blue;
+          }
+        }
+      }
+    }
+    .navbar-nav > .nav-item.dropdown > .nav-link:after {
+      color: $gray-500;
+    }
+  }
+  @media (min-width: 992px) {
+    .navbar-collapse {
+      .navbar-sidenav {
+        background: $green;
+        li {
+          &.active {
+            a {
+              color: white !important;
+              background-color: $gray-background;
+              &:focus,
+              &:hover {
+                color: white;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+

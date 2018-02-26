@@ -1,0 +1,148 @@
+@import "~styles/variables";
+.hures-search-outer {
+    top: -32px;
+    position: relative;
+
+    .hures-search {
+        background: var(--light);
+        padding: 32px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+        margin: 8px;
+        .input-group {
+            border: 1px solid rgba($color: gray, $alpha: 0.6);
+            background: white;
+            padding: 4px;
+            margin: 4px;
+            height: 44px;
+            .input-group-addon {
+                background: white;
+                border: 0;
+                border-radius: 0;
+                i {
+                    color: gray;
+                }
+            }
+            input[type] {
+                outline: none;
+                border: 0;
+                width: 100%;
+                border-radius: 0;
+                font-family: "Montserrat-Thin", sans-serif;
+            }
+            .w-100{
+                white-space: nowrap; 
+                overflow: hidden;
+                text-overflow: ellipsis; 
+                margin-top:2.5px;
+                .hures-dropdown{
+                    white-space: nowrap; 
+                    overflow: hidden;
+                    text-overflow: ellipsis; 
+                }
+            }
+        }
+        .hures-search-btn {
+            background: $main-color;
+            color: white;
+            height: 44px;
+            margin: 4px;
+            border: 0;
+            width: 100%;
+            font-family: "Montserrat", sans-serif;
+            padding: 4px 32px;
+            white-space: nowrap; 
+        }
+        .hures-search-advanced{
+            cursor: pointer;
+        }
+    }
+}
+@media screen and (max-width: 306px) {
+    .hures-search-outer {
+        .hures-search {
+            .input-group {
+                .input-group-addon {
+                    i {
+                    }
+                }
+                input[type] {
+                }
+                input:-moz-placeholder{
+                    font-size:10px;
+                    font-weight: bold;
+                }
+                input::-moz-placeholder{
+                    font-size:10px;
+                    font-weight: bold;
+                }
+                input:-ms-input-placeholder{
+                    font-size:10px;
+                    font-weight: bold;
+                }
+                input::-webkit-input-placeholder{
+                    font-size:10px;
+                    font-weight: bold;
+                }
+                //dropdown placeholder
+                .w-100{
+                    .hures-dropdown-container{
+                        margin-left:0px;
+                    }
+                    .hures-dropdown{
+                     
+                        font-size: 10px;
+                        font-weight: bold;
+                       line-height: 25px;
+                    }
+                }
+            }
+            .hures-search-btn {
+                font-size:14px;
+            }
+            .hures-search-advanced{
+            }
+        }
+    }
+}
+@media screen and (max-width: 270px) {
+    .hures-search-outer {
+        .hures-search {
+            .input-group {
+                .input-group-addon {
+                    i {
+                    }
+                }
+                input[type] {
+                }
+                input:-moz-placeholder{
+            
+                }
+                input::-moz-placeholder{
+                
+                }
+                input:-ms-input-placeholder{
+                   
+                }
+                input::-webkit-input-placeholder{
+                 
+                }
+                //dropdown placeholder
+                .w-100{
+                    .hures-dropdown-container{
+                        margin-left:0px;
+                    }
+                    .hures-dropdown{
+                     
+                     
+                    }
+                }
+            }
+            .hures-search-btn {
+                font-size:12px;
+                padding: 4px !important;
+            }
+            .hures-search-advanced{
+            }
+        }
+    }
+}

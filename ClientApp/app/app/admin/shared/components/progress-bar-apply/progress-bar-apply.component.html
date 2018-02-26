@@ -1,0 +1,21 @@
+<div class="stepwizard">
+    <div class="stepwizard-row">
+        <div class="stepwizard-step" *ngFor="let item of listValue">
+            <button type="button" class="btn btn-circle" [ngClass]=" (item.active) ? 'btn-primary' : 'btn-default'" [disabled]="item.disabled"
+                (click)="setCurrent(item.index)">{{item.index}}</button>
+            <p>{{item.title}}</p>
+        </div>
+        <!-- <div class="stepwizard-step">
+            <button type="button" class="btn btn-primary btn-circle">2</button>
+            <p>Đã duyệt</p>
+        </div>
+        <div class="stepwizard-step">
+            <button type="button" class="btn btn-default btn-circle" disabled="disabled">3</button>
+            <p>Chờ phỏng vấn</p>
+        </div>
+        <div class="stepwizard-step">
+            <button type="button" class="btn btn-default btn-circle" disabled="disabled">4</button>
+            <p>Hoàn thành</p>
+        </div> -->
+    </div>
+</div>

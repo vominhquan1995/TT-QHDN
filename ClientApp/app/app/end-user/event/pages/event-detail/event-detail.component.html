@@ -1,0 +1,54 @@
+<div class="hures-event-detail-header m-5">
+  <div class="container">
+    <div class="row" style="padding-left:15px;padding-right:15px;">
+      <div class="col-12 col-lg-10">
+        <div class="row">
+          <div class="col-12 col-lg-4 col-md-6 text-center">
+            <div class="hures-event-date-container">
+              <h5 class="text-center hures-event-date hures-event-month p-2">{{ event?.startTime | date:'MMMM'}}</h5>
+              <div class="p-2">
+                <h5 class="text-center hures-event-date hures-event-day">{{ event?.startTime | date:'dd'}}</h5>
+                <h5 class="text-center hures-event-date hures-event-day-of-week">{{ event?.startTime | date:'EEEE'}}</h5>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-lg-8 col-md-6">
+            <h2 class="hures-event-detail-info-text">{{event?.name}}</h2>
+            <h5 class="hures-event-detail-info-text">{{ event?.shortDescription}}</h5>
+            <p class="hures-event-detail-info-text">
+              <span>
+                <i class="fa fa-map-marker"></i>
+              </span> {{ event?.place }}</p>
+            <p class="hures-event-detail-info-text">
+              <span>
+                <i class="fa fa-clock-o"></i>
+              </span> {{ event?.startTime |date:'hh:mm dd/MM/yyyy'}} -{{ event?.endTime |date:'hh:mm dd/MM/yyyy'}}
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-2">
+        <button class="hures-btn btn-join" (click)="goTo(event?.linkRegister)">
+          THAM GIA
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="jumbotron">
+    <img class="hures-event-detail-img" [src]="event?.imageURL" [alt]="event?.title">
+    <h4 style="margin-top:8px;">Giới thiệu</h4>
+    <hr>
+    <div class="hures-event-detail-content" [innerHTML]="event?.contentHtml"></div>
+  </div>
+</div>
+<div class="container mt-5">
+  <h4 class="text-uppercase">Sự kiện liên quan</h4>
+  <hr>
+  <div *ngIf="relatedEvents" class="row">
+    <div *ngFor="let item of relatedEvents" class="col-12 col-md-4 p-4">
+      <hure-event-card [event]="item"></hure-event-card>
+    </div>
+  </div>
+</div>
