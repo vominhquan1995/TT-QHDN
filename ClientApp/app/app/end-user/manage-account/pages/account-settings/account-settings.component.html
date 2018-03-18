@@ -1,6 +1,6 @@
 <div *ngIf="accountForm">
   <div class="col-12 hures-account-settings-form">
-    <h3 class="text-left m-2">Cài đặt</h3>
+    <h4 class="text-left m-2">Cài đặt</h4>
     <form [formGroup]="accountForm">
       <!-- sinhvien -->
       <div class="p-2">
@@ -102,7 +102,7 @@
     <button *ngIf="!isEdit" class="hures-btn col-12 col-md-4" rippleEffect (click)="isEdit=!isEdit">Chỉnh sửa</button>
     <button *ngIf="isEdit" class="hures-btn col-12 col-md-4" rippleEffect (click)="update()">Cập nhật</button>
     <hr>
-    <h3 *ngIf="!accountForm.controls.company.value" class="text-left m-2">Hồ sơ công việc</h3>
+    <h4 *ngIf="!accountForm.controls.company.value" class="text-left m-2">Hồ sơ công việc</h4>
     <div *ngIf="!accountForm.controls.company.value">
       <form [formGroup]="cvForm" class="p-2">
         <div class="row">
@@ -146,7 +146,7 @@
       <button *ngIf="isUpdateCV" class="hures-btn col-12 col-md-4" rippleEffect (click)="updateCV()">Cập nhật</button>
     </div>
 
-    <h3 *ngIf="accountForm.controls.company.value" class="text-left">Thông tin doanh nghiệp</h3>
+    <h4 *ngIf="accountForm.controls.company.value" class="text-left">Thông tin doanh nghiệp</h4>
     <div *ngIf="accountForm.controls.company.value" class="p-2">
       <!-- doanhnghiep -->
       <form [formGroup]="companyForm">

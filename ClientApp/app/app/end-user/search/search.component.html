@@ -7,7 +7,7 @@
       <div class="col-12 col-lg-7 ">
         <div class="jumbotron">
           <div *ngIf="jobs$ | async; let jobs; else waiting" class="d-flex flex-column">
-            <h3>Có {{ jobs.length }} kết quả phù hợp.</h3>
+            <h4>Tìm thấy {{ jobs.length }} kết quả.</h4>
             <ng-container *ngFor="let job of jobs| paginate: { itemsPerPage: limit, currentPage: page } ;let i=index">
               <hure-job [job]="job" class="m-1"></hure-job>
               <hr style="width:100%;">
@@ -24,7 +24,7 @@
       <div class="col-12 col-lg-5">
         <div class="jumbotron">
           <div *ngIf="jobsHot$ | async; let jobsHot; else waiting" class="d-flex flex-column">
-            <h3>Có {{ jobsHot.length }} công việc đang hot.</h3>
+            <h4>Có {{ jobsHot.length }} công việc nổi bật.</h4>
             <ng-container *ngFor="let job of jobsHot">
               <hure-job [job]="job" class="m-1"></hure-job>
               <hr style="width:100%;">

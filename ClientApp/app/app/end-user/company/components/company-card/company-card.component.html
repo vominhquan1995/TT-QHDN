@@ -1,12 +1,11 @@
-<div  class="hures-job-card d-flex flex-row align-content-stretch" id="hures-job-card" (click)="apply()"
-  style="cursor:pointer;">
-  <img *ngIf="size=='medium'" alt="logo" [src]="company?.urlLogo" />
+<div class="hures-job-card d-flex flex-row align-content-stretch" id="hures-job-card" (click)="apply()" style="cursor:pointer;">
+  <img *ngIf="size=='medium'" alt="logo" [src]="company?.urlLogo" onerror="this.src='./resources/logo_default.png'" />
   <div class="hures-job-content" style="cursor:pointer;">
     <div class="d-flex-column">
       <div class="row">
-        <h6 class="text-uppercase mt-0 mb-0 ml-1 col-12" (click)="apply()">{{ company?.name| limitText:40 }}
-        </h6>
-        <p class="mt-0 mb-0 ml-1 d-block col-12" (click)="apply()">{{ company?.shortName | limitText:40}}</p>
+        <strong class="text-uppercase mt-0 mb-0 ml-1 col-12 company-name-title" (click)="apply()" [title]="company?.name">{{ company?.name| limitText:40 }}
+        </strong>
+        <p class="mt-0 mb-0 ml-1 d-block col-12">{{ company?.shortName | limitText:40}}</p>
       </div>
       <div class="row">
         <div class="col-12 col-lg-6 hures-job-info ">

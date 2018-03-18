@@ -10,24 +10,28 @@
     <!-- left -->
     <div class="col-12 col-lg-8">
       <div class="jumbotron hures-company-detail-info">
-        <h2>Thông tin</h2>
+        <h4 class="text-left">Thông tin</h4>
         <div class="row">
           <div class="col-12">
             <ul>
-              <li>Địa chỉ:
-                <strong>{{ company?.address }}</strong>
+              <li>
+                <strong>Địa chỉ :</strong>
+                <span>{{ company?.address }}</span>
               </li>
               <hr>
-              <li>Số điện thoại:
-                <strong>{{ company?.phoneNumber }}</strong>
+              <li>
+                <strong>Điện thoại :</strong>
+                <span>{{ company?.phoneNumber }}</span>
               </li>
               <hr>
-              <li>Quy mô:
-                <strong>{{ company?.scales }}</strong>
+              <li>
+                <strong>Quy mô :</strong>
+                <span>{{ company?.scales }}</span>
               </li>
               <hr>
-              <li>Đại diện :
-                <strong>{{ company?.representor }}</strong>
+              <li>
+                <strong>Đại diện :</strong>
+                <span>{{ company?.representor }}</span>
               </li>
               <hr>
             </ul>
@@ -39,7 +43,7 @@
           <div class="hures-container">
             <div class="row" style="margin: 0.25rem">
               <!-- <div class="col-md-6"> -->
-              <h3 class="text-center m-2" style="text-align: center">Doanh nghiệp đang tuyển</h3>
+              <h4 class="text-center m-2" style="text-align: center">Doanh nghiệp đang tuyển</h4>
               <!-- </div> -->
             </div>
             <div *ngIf="jobRelated$ | async; let jobs; else waiting" class="d-flex flex-column">
@@ -62,33 +66,36 @@
         <ul>
           <li style="max-height:100%;">
             <div class="hures-jobs-company-logo-container">
-              <img [src]="company?.urlLogo" [alt]="job?.company.shortName">
+              <img [src]="company?.urlLogo" [alt]="job?.company.shortName" onerror="this.src='./resources/logo_default.png'">
             </div>
           </li>
           <hr>
           <li>
-            Tên doanh nghiệp:
-            <strong>{{ company?.name }} ({{ company?.shortName }})</strong>
+
+            <strong>Tên doanh nghiệp :</strong>
+            <span>{{ company?.name }} ({{ company?.shortName }})</span>
           </li>
           <hr>
           <li>
-            Website:
+
+            <strong>Website :</strong>
             <a href="{{ company?.website }}">{{company?.website}}</a>
           </li>
           <hr>
           <li>
-            SĐT:
+            <strong>Điện thoại :</strong>
             <a href="tel:{{ company?.phoneNumber }}">{{company?.phoneNumber}}</a>
           </li>
           <hr>
           <li>
-            Email:
+
+            <strong>Email :</strong>
             <a href="tel:{{ company?.email }}">{{company?.phoneNumber}}</a>
           </li>
         </ul>
         <hr>
         <div *ngIf="companyRelated$">
-          <hure-companies-container [companiesObserver]="companyRelated$" size="small" paging="no"  title="Liên quan" limit="10"></hure-companies-container>
+          <hure-companies-container [companiesObserver]="companyRelated$" size="small" paging="no" title="Liên quan" limit="10"></hure-companies-container>
         </div>
 
       </div>

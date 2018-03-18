@@ -4,7 +4,7 @@
       <span class="input-group-addon">
         <i class="fa fa-users"></i>
       </span>
-      <hure-dropdown (change)="roleChange($event)" class="w-100" placeholder="Bạn là...">
+      <hure-dropdown (change)="roleChange($event)" class="w-100" placeholder="Loại tài khoản">
         <ng-container *ngIf="roles$|async; let roles">
           <hure-dropdown-item *ngFor="let item of roles" [text]="item.description" [value]="item.id"></hure-dropdown-item>
         </ng-container>
@@ -52,7 +52,8 @@
       </span>
       <input type="text" formControlName="companyPhone" placeholder="Số điện thoại Doanh nghiệp">
     </div>
-    <textarea [class.invalid]="signUpForm.controls.companyDescription.invalid" class="form-control" style="outline:0; border-radius:0;" formControlName="companyDescription" placeholder="Mô tả"></textarea>  
+    <textarea [class.invalid]="signUpForm.controls.companyDescription.invalid" class="form-control" style="outline:0; border-radius:0;"
+      formControlName="companyDescription" placeholder="Mô tả"></textarea>
     <button type="submit" rippleEffect (click)="nextStep()" class="hures-search-btn" rippleEffect>Bước tiếp theo
       <i class="fa fa-chevron-right"></i>
     </button>

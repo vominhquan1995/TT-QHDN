@@ -10,28 +10,33 @@
     <!-- left -->
     <div class="col-12 col-lg-8">
       <div class="jumbotron">
-        <h2>Thông tin</h2>
+        <h4 class="job-detail-title">Thông tin</h4>
         <div class="row">
           <div class="col-12 col-md-6">
             <ul>
-              <li>Địa điểm:
-                <strong>{{ job?.place}}</strong>
+              <li>
+                <strong>Địa điểm:</strong>
+                <span>{{ job?.place}}</span>
               </li>
               <hr>
-              <li>Kinh nghiệm:
-                <strong>{{ job?.experience}}</strong>
+              <li>
+                <strong>Kinh nghiệm:</strong>
+                <span>{{ job?.experience}}</span>
               </li>
               <hr>
-              <li>Vị trí:
-                <strong>{{ job?.position}}</strong>
+              <li>
+                <strong> Vị trí:</strong>
+                <span>{{ job?.position}}</span>
               </li>
               <hr>
-              <li>Hình thức:
-                <strong>{{ job?.workType?.name }}</strong>
+              <li>
+                <strong>Hình thức:</strong>
+                <span>{{ job?.workType?.name }}</span>
               </li>
               <hr>
-              <li>Ngày hết hạn:
-                <strong>{{ job?.deadlineApply | date:'dd/MM/yyyy'}}</strong>
+              <li>
+                <strong>Ngày hết hạn:</strong>
+                <span>{{ job?.deadlineApply | date:'dd/MM/yyyy'}}</span>
               </li>
               <hr>
 
@@ -39,27 +44,31 @@
           </div>
           <div class="col-12 col-md-6">
             <ul>
-              <li>Số lượng:
-                <strong>{{ job?.number }}</strong>
+              <li>
+                <strong>Số lượng:</strong>
+                <span>{{ job?.number }}</span>
               </li>
               <hr>
-              <li>Thử việc:
-                <strong>{{ job?.timePre}}</strong>
+              <li>
+                <strong>Thử việc:</strong>
+                <span>{{ job?.timePre}}</span>
               </li>
               <hr>
               <!-- <li>Tuổi:
-                <strong>{{ job?.age }}</strong>
+                <span>{{ job?.age }}</span>
               </li> -->
               <hr>
-              <li>Phúc lợi:
-                <strong>{{ job?.benefit}}</strong>
+              <li>
+                <strong>Phúc lợi:</strong>
+                <span>{{ job?.benefit}}</span>
               </li>
               <hr>
-              <li>Mức lương:
-                <strong>{{job?.salary}}</strong>
+              <li>
+                <strong>Mức lương:</strong>
+                <span>{{job?.salary}}</span>
                 <!-- từ
-                <strong>{{ job?.lowestSalary | currency:'VND':true }}</strong> đến
-                <strong>{{job?.highestSalary | currency:'VND':true}}</strong>  -->
+                <span>{{ job?.lowestSalary | currency:'VND':true }}</span> đến
+                <span>{{job?.highestSalary | currency:'VND':true}}</span>  -->
               </li>
               <hr>
             </ul>
@@ -70,19 +79,19 @@
         </div>
       </div>
       <div class="jumbotron">
-        <h2>Chi tiết</h2>
+        <h4 class="job-detail-title">Chi tiết</h4>
         <div class="hures-job-content-html" [innerHTML]="job?.contentURL"></div>
         <div class="row">
           <div class="col-12 col-md-4 col-xl-3">
             <button *ngIf="role!='Admin'&&role!='Company'" class="hures-btn" (click)="apply(job)" rippleEffect>Ứng tuyển</button>
           </div>
           <div class="col-12">
-            <strong class="float-right m-1">Lượt xem:
+            <span class="float-right m-1">Lượt xem:
               <p class="d-inline-block" style="color:dodgerblue">{{ job?.viewCount }}</p>
-            </strong>
-            <strong class="float-right m-1">Ứng tuyển:
+            </span>
+            <span class="float-right m-1">Ứng tuyển:
               <p class="d-inline-block" style="color:dodgerblue"> {{ job?.appliedCount }}</p>
-            </strong>
+            </span>
           </div>
         </div>
       </div>
@@ -98,17 +107,17 @@
           </li>
           <hr>
           <li>
-            Tên Doanh nghiệp:
-            <strong>{{ job?.company.name }} ({{ job?.company.shortName }})</strong>
+            <strong>Tên Doanh nghiệp:</strong>
+            <span>{{ job?.company.name }} ({{ job?.company.shortName }})</span>
           </li>
           <hr>
           <li>
-            Website:
+            <strong>Website:</strong>
             <a href="{{ job?.company.website }}">{{job?.company.website}}</a>
           </li>
           <hr>
           <li>
-            SĐT:
+            <strong>Điện thoại</strong>
             <a href="tel:{{ job?.company.phoneNumber }}">{{job?.company.phoneNumber}}</a>
           </li>
         </ul>

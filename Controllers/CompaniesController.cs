@@ -96,7 +96,6 @@ namespace HuRe.Controllers
             return doanhNghieps.Where(z => z.IsPartner && z.Status.ToUpper() == "ACTIVE").OrderByDescending(o => o.Scales).Take(10).ToList();
         }
         [HttpDelete("{id}")]
-        [Authorize]
         public async Task<bool> Delete(long id)
         {
             bool isDeleted = await _companiesRepo.RemoveAsync(id);
@@ -104,7 +103,6 @@ namespace HuRe.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<bool> Post([FromBody] Company model)
         {
             bool isAdded = await _companiesRepo.AddAsync(model);
@@ -120,7 +118,7 @@ namespace HuRe.Controllers
 
         #region api dung cho admin
         [HttpPost("page")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<ModelPaging<Company>> Post([FromBody]FilterPageActionModel form)
         {
             //var total = _companiesRepo.CountAll(form);
@@ -152,27 +150,27 @@ namespace HuRe.Controllers
             };
         }
         [HttpPost("create")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<bool> Create([FromBody]Company form)
         {
             return await _companiesRepo.AddAsync(form);
         }
         [HttpPut("update/{id}")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<bool> Update(long id, [FromBody]Company form)
         {
             return await _companiesRepo.UpdateAsync(id, form);
         }
         //da co
         [HttpGet("info/{id}")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<Company> GetInfo(long id)
         {
             return await _companiesRepo.GetAsync(id);
         }
         //da co
         [HttpDelete("delete/{id}")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<bool> DeleteAdmin(long id)
         {
             var item = await _companiesRepo.GetAsync(id);
@@ -187,7 +185,7 @@ namespace HuRe.Controllers
 
         }
         [HttpPut("activate/{id}")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<bool> Activate(int id, [FromBody]Company form)
         {
             return await _companiesRepo.UpdateAsync(id, form);

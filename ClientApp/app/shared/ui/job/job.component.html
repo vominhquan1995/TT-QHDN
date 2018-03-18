@@ -1,14 +1,14 @@
-<div  class="hures-job-card d-flex flex-row align-content-stretch" id="hures-job-card">
+<div class="hures-job-card d-flex flex-row align-content-stretch" id="hures-job-card">
   <a *ngIf="size=='medium'" href="company/{{job?.company.id}}">
-      <img alt="logo" [src]="job.company.urlLogo" />
+    <img alt="logo" [src]="job.company.urlLogo" onerror="this.src='./resources/logo_default.png'" />
   </a>
   <div class="hures-job-content" style="cursor:pointer;">
-    <div  class="d-flex-column">
-      <div  class="row">
-        <h6 class="text-uppercase mt-0 mb-0 ml-1 col-12"  (click)="apply()">{{ job?.title| limitText:40 }} 
-            <span *ngIf="job?.isHot" style="width:32px" class="badge badge-danger">Hot</span>
-        </h6>
-        <p class="mt-0 mb-0 ml-1 d-block col-12"  (click)="apply()">{{ job?.company?.name| limitText:40 }}</p>
+    <div class="d-flex-column">
+      <div class="row">
+        <strong class="text-uppercase mt-0 mb-0 ml-1 col-12 job-title" (click)="apply()" [title]="job?.title">{{ job?.title| limitText:40 }}
+          <span *ngIf="job?.isHot" style="width:32px" class="badge badge-danger">Hot</span>
+        </strong>
+        <p class="mt-0 mb-0 ml-1 d-block col-12">{{ job?.company?.name| limitText:40 }}</p>
       </div>
       <div class="row">
         <div class="col-12 col-lg-6 hures-job-info ">
@@ -19,7 +19,7 @@
         </div>
         <div class="col-12 col-lg-6 hures-job-info">
           <small style="display:block;" class="text-muted m-1">
-            <i class="fa fa-map-marker"></i> {{ job?.deadlineApply | date:'dd/MM/yyyy' }}</small>
+            <i class="fa fa-clock-o"></i> {{ job?.deadlineApply | date:'dd/MM/yyyy' }}</small>
         </div>
       </div>
     </div>

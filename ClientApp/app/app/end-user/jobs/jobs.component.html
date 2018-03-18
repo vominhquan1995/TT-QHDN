@@ -7,7 +7,7 @@
                     <div *ngIf="jobs " class="hures-container">
                         <div class="row" style="margin: 0.25rem">
                             <!-- <div class="col-md-6"> -->
-                            <h3 class="text-center m-2" style="text-align: center">Có {{ total }} {{ isIntership?'việc thực tập':'việc làm' }} cho bạn</h3>
+                            <h4 class="text-center m-2" style="text-align: center">Hiện có {{ total }} {{ isIntership?'việc thực tập':'việc làm' }} cho bạn</h4>
                             <!-- </div> -->
                         </div>
                         <div class="d-flex flex-column">
@@ -18,8 +18,7 @@
                             </ng-container>
                             <h5 class="text-center" *ngIf="total==0">Không có mục nào</h5>
                             <div class="has-text-centered">
-                                <pagination-controls id="job" (pageChange)="changePage($event)" autoHide="true" previousLabel="Trước"
-                                    nextLabel="Sau"></pagination-controls>
+                                <pagination-controls id="job" (pageChange)="changePage($event)" autoHide="true" previousLabel="Trước" nextLabel="Sau"></pagination-controls>
                             </div>
                         </div>
                     </div>
@@ -27,7 +26,8 @@
             </div>
             <div class="col-12 col-xl-4 col-lg-4">
                 <div *ngIf="jobsHot$" class="jumbotron">
-                    <hure-jobs-container [jobsObserver]="jobsHot$" paging="no" title="{{ isIntership?'Việc thực tập mới nhất':'Việc làm mới nhất'}}" size="small" limit="10"></hure-jobs-container>
+                    <hure-jobs-container [jobsObserver]="jobsHot$" paging="no" title="{{ isIntership?'Việc thực tập mới nhất':'Việc làm mới nhất'}}"
+                        size="small" limit="10"></hure-jobs-container>
                 </div>
             </div>
         </div>

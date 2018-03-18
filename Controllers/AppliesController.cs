@@ -73,6 +73,7 @@ namespace HuRe.Controllers
         }
         #region admin
         [HttpPost("page")]
+        [Authorize(Policy = "Admin")]
         public async Task<ModelPaging<Apply>> Post([FromBody]FilterPageActionModel body)
         {
             var Applies = await _appliesRepo.GetAll();

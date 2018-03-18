@@ -66,6 +66,15 @@ namespace HuRe
             services.AddTransient<ICompanyRepository, CompaniesRepository>();
             services.AddTransient<IFileService, FileService>();
             services.AddTransient<IRepository<Slide>, Repository<Slide>>();
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("Admin",
+                    policy => policy.RequireClaim("Role", "Admin"));
+                options.AddPolicy("Student",
+                    policy => policy.RequireClaim("Role", "Student"));
+                options.AddPolicy("Company",
+                    policy => policy.RequireClaim("Role", "Company"));
+            });
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(jwtBearerOptions =>
             {

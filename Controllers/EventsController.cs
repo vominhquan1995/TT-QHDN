@@ -26,7 +26,7 @@ namespace HuRe.Controllers
         }
         #region api dung cho admin
         [HttpPost("page")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<ModelPaging<Event>> Post([FromBody]FilterPageActionModel body)
         {
             var Events = await _eventRepo.GetsAsync();
@@ -59,13 +59,13 @@ namespace HuRe.Controllers
             };
         }
         [HttpPost("create")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<bool> Create([FromBody]Event form)
         {
             return await _eventRepo.AddAsync(form);
         }
         [HttpPut("update/{id}")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<bool> Update(long id, [FromBody]Event form)
         {
             return await _eventRepo.UpdateAsync(id, form);
@@ -76,7 +76,7 @@ namespace HuRe.Controllers
             return await _eventRepo.GetAsync(id);
         }
         [HttpDelete("delete/{id}")]
-        [Authorize]
+        [Authorize(Policy = "Admin")]
         public async Task<bool> Delete(long id)
         {
             var item = await _eventRepo.GetAsync(id);
@@ -114,18 +114,18 @@ namespace HuRe.Controllers
         {
             var events = await _eventRepo.GetsAsync();
             var timeNow = DateTime.UtcNow.AddHours(7);
-            var opening = events.Where(z => z.StartTime < timeNow && z.EndTime > timeNow);
+            var opening = events.Where(z => z.StartTime < timeNow && z.EndTime > timeNow).ToList();
             if (opening.Count() < 3)
             {
-                var notOpenYet = events.Where(z=>z.StartTime>= timeNow || z.EndTime<=timeNow);
+                var notOpenYet = events.Where(z => z.StartTime >= timeNow || z.EndTime <= timeNow).ToList();
                 foreach (var item in notOpenYet)
                 {
-                    opening.Append(item);
+                    opening.Add(item);
                 }
-                var error = events.Where(z=>z.StartTime<= timeNow || z.EndTime>=timeNow);
+                var error = events.Where(z => z.StartTime <= timeNow || z.EndTime >= timeNow).ToList();
                 foreach (var item in error)
                 {
-                    opening.Append(item);
+                    opening.Add(item);
                 }
             }
             return opening.Take(3);

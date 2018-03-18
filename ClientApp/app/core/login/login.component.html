@@ -35,7 +35,7 @@
                 <input type="text" formControlName="email" placeholder="Email của bạn" autofocus>
             </div>
             <small *ngIf="forgetForm.controls.email.invalid">Địa chỉ email không hợp lệ</small>
-            <button type="submit" rippleEffect [disabled]="!forgetForm.valid" (click)="submitForget()" class="hures-search-btn" rippleEffect>Gửi mail</button>
+            <button type="submit" rippleEffect [disabled]="!forgetForm.valid" (click)="submitForget()" class="hures-search-btn" rippleEffect>Gửi</button>
             <a (click)="changeView(true, false)" style="cursor:pointer">
                 <span>
                     <i class="fa fa-unlock-alt"></i> Đăng nhập</span>

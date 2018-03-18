@@ -6,18 +6,18 @@
           <div *ngIf="companies" class="hures-container">
             <div class="row" style="margin: 0.25rem">
               <!-- <div class="col-md-6"> -->
-              <h4 class="text-center col-12 m-2" style="float: left">Các doanh nghiệp, có tất cả {{ total }} doanh nghiệp</h4>
+              <h4 class="text-left col-12 m-2" style="float: left">Có tất cả {{ total }} doanh nghiệp</h4>
               <!-- </div> -->
               <div class="col-12">
-                  <span style="display:inline-block;" id="basic-addon1" style="margin:4px;vertical-align:middle;">
-                      <i class="fa fa-search"></i>
-                    </span>
+                <span style="display:inline-block;" id="basic-addon1" style="margin:4px;vertical-align:middle;">
+                  <i class="fa fa-search"></i>
+                </span>
                 <input class="hures-compnay-search" type="text" placeholder="Tên doanh nghiệp..." (keyup.enter)="search()" (input)="keyword=$event.target.value"
                   [value]="keyword">
-                
+
               </div>
             </div>
-            <div  *ngIf="companies" class="d-flex flex-column">
+            <div *ngIf="companies" class="d-flex flex-column">
               <ng-container *ngFor="let company of companies| paginate: { id: 'server', itemsPerPage: 10, currentPage: page, 
                 totalItems: total } ;let i=index">
                 <hure-company-card [company]="company" class="m-1"></hure-company-card>

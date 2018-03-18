@@ -12,7 +12,11 @@ $light-color: var(--light);
         width: 100%;
         .hures-job-info {
             width: 100%;
+            .fa{
+                color: $main-color;
+            }
         }
+
         .hures-job-apply-button {
             border: solid 1px $main-color;
             color: $main-color;
@@ -176,4 +180,7 @@ $light-color: var(--light);
 
     
 
+}
+.job-title:hover{
+    color: $main-color
 }

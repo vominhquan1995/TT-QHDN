@@ -6,7 +6,7 @@
           <span class="input-group-addon" id="basic-addon1">
             <i class="fa fa-search"></i>
           </span>
-          <input type="text" placeholder="Từ khóa..." (keyup.enter)="search()" (input)="keyword=$event.target.value" [value]="keyword" >
+          <input type="text" placeholder="Từ khóa..." (keyup.enter)="search()" (input)="keyword=$event.target.value" [value]="keyword">
         </div>
         <small class="text-muted m-1">Web design, .NET,....</small>
       </div>
@@ -15,30 +15,30 @@
           <span class="input-group-addon">
             <i class="fa fa-chevron-down"></i>
           </span>
-          <hure-dropdown  class="w-100" placeholder="Ngành nghề..." [selectedItem]="selectedJobGItem" (change)="onJobGroupChange($event)">
+          <hure-dropdown class="w-100" placeholder="Ngành nghề..." [selectedItem]="selectedJobGItem" (change)="onJobGroupChange($event)">
             <ng-container *ngFor="let item of jobs">
-              <hure-dropdown-item [text]="item?.name" [value]="item?.id" [isSelected]="item?.id==selectedJobG" ></hure-dropdown-item>
+              <hure-dropdown-item [text]="item?.name" [value]="item?.id" [isSelected]="item?.id==selectedJobG"></hure-dropdown-item>
             </ng-container>
           </hure-dropdown>
         </div>
         <small class="text-muted m-1">Kinh doanh, Lập trình,...</small>
       </div>
       <div class="col-12 col-lg-4 col-md-6">
-          <div class="input-group">
-            <span class="input-group-addon" >
-              <i class="fa fa-chevron-down"></i>
-            </span>
-            <hure-dropdown class="w-100" placeholder="Hình thức.." (change)="onWorkTypeChange($event)" [selectedItem]="selectedWorkTItem">
-              <ng-container *ngFor="let item of works">
-                <hure-dropdown-item [text]="item?.name" [value]="item?.id" [isSelected]="item?.id==selectedWorkT" ></hure-dropdown-item>
-              </ng-container>
-            </hure-dropdown>
-          </div>
-          <small class="text-muted m-1">Thực tập, Bán thời gian,...</small>
+        <div class="input-group">
+          <span class="input-group-addon">
+            <i class="fa fa-chevron-down"></i>
+          </span>
+          <hure-dropdown class="w-100" placeholder="Hình thức.." (change)="onWorkTypeChange($event)" [selectedItem]="selectedWorkTItem">
+            <ng-container *ngFor="let item of works">
+              <hure-dropdown-item [text]="item?.name" [value]="item?.id" [isSelected]="item?.id==selectedWorkT"></hure-dropdown-item>
+            </ng-container>
+          </hure-dropdown>
         </div>
+        <small class="text-muted m-1">Thực tập, Bán thời gian,...</small>
+      </div>
       <div class="col-12 col-lg-4">
         <button class="hures-search-btn" (click)="search()" rippleEffect>TÌM KIẾM</button>
-        <small [hidden]="keyword==''&& selectedWorkT==0 && selectedJobG==0" class="form-text text-muted hures-search-advanced" (click)="clear()">Tẩy bộ lọc</small>
+        <small [hidden]="keyword==''&& selectedWorkT==0 && selectedJobG==0" class="form-text text-muted hures-search-advanced" (click)="clear()">Xóa bộ lọc</small>
       </div>
     </div>
   </div>
