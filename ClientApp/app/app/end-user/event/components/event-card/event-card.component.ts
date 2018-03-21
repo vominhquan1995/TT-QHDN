@@ -10,15 +10,16 @@ import * as moment from 'moment';
 export class EventCardComponent implements OnInit {
     ngOnInit(): void {
         if (!moment(this.event.endTime).isAfter(new Date())) {
-            this.status = "Hết hạn";
+            // this.status = "Hết hạn";
 
         } else if (moment(this.event.startTime).isAfter(new Date())) {
-            this.status = "Sắp diễn ra";
+            // this.status = "Sắp diễn ra";
         } else {
-            this.status = "Đang diễn ra";
+            // this.status = "Đang diễn ra";
+            this.status = "Hot";
         }
     }
-    status: string;
+    status: string = '';
     currentDate = new Date()
     constructor(private router: Router) { }
     @Input() event: EventItem;

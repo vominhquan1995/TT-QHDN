@@ -34,11 +34,11 @@
       </span>
       <input type="text" formControlName="companyEmail" placeholder="Email của Doanh nghiệp">
     </div>
-    <div class="input-group" [class.invalid]="signUpForm.controls.taxCode.invalid">
+    <div class="input-group">
       <span class="input-group-addon">
         <i class="fa fa-qrcode"></i>
       </span>
-      <input type="text" formControlName="taxCode" placeholder="Mã số thuế của Doanh nghiệp">
+      <input type="text" formControlName="taxCode" placeholder="Mã số thuế (có thể bỏ trống)">
     </div>
     <div class="input-group" [class.invalid]="signUpForm.controls.companyAddress.invalid">
       <span class="input-group-addon">

@@ -16,7 +16,7 @@ namespace HuRe.Models
         public string Email { get; set; }
         public string TaxCode { get; set; }
         public string URLLogo { get; set; } = "/resources/logo_default.png";
-        public string Representor { get; set; }
+        public string Representor { get; set; } = "Chưa cập nhật";
         public string Description { get; set; } = "Chưa cập nhật";
         public bool IsPartner { get; set; } = false;
         public virtual ICollection<Job> Jobs { get; set; }

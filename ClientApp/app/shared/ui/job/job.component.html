@@ -13,13 +13,18 @@
       <div class="row">
         <div class="col-12 col-lg-6 hures-job-info ">
           <small style="display:block;" class="text-muted m-1">
-            <i class="fa fa-money"></i> {{ job?.salary | limitText:39}}</small>
-          <small style="display:block;" class="text-muted m-1">
-            <i class="fa fa-map-marker"></i> {{ job?.place }}</small>
+            <!-- <i class="fa fa-money"></i> -->
+            Lương :{{ job?.salary | limitText:39}}</small>
         </div>
-        <div class="col-12 col-lg-6 hures-job-info">
+        <div class="col-12 col-lg-6 hures-job-info ">
           <small style="display:block;" class="text-muted m-1">
-            <i class="fa fa-clock-o"></i> {{ job?.deadlineApply | date:'dd/MM/yyyy' }}</small>
+            <!-- <i class="fa fa-clock-o"></i> -->
+            Thời gian :{{ job?.deadlineApply | date:'dd/MM/yyyy' }}</small>
+        </div>
+        <div class="col-12 col-lg-12 hures-job-info">
+          <small style="display:block;" class="text-muted m-1">
+            <!-- <i class="fa fa-map-marker"></i> -->
+            Địa điểm :{{ job?.place }}</small>
         </div>
       </div>
     </div>
