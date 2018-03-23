@@ -108,12 +108,18 @@
           <hr>
           <li>
             <strong>Tên Doanh nghiệp:</strong>
-            <span>{{ job?.company.name }} ({{ job?.company.shortName }})</span>
+            <span>{{ job?.company.name }}</span>
           </li>
           <hr>
           <li>
-            <strong>Website:</strong>
-            <a href="{{ job?.company.website }}">{{job?.company.website}}</a>
+            <strong>Mã số thuế :</strong>
+            <span>{{ job?.company.taxCode }}</span>
+          </li>
+          <hr>
+          <li>
+
+            <strong>Đại diện :</strong>
+            <span>{{ job?.company.representor }}</span>
           </li>
           <hr>
           <li>
