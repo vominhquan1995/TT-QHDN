@@ -7,9 +7,10 @@ interface EventItem extends Base {
     place: string;
     linkRegister: string;
     imageURL: string;
-    startTime: string;
-    endTime: string;
+    registerTime: string;
+    time: string;
     //for admin
     classColor: string;
     des: string;
+    status: string;
 }

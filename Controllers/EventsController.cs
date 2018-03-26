@@ -30,25 +30,26 @@ namespace HuRe.Controllers
         public async Task<ModelPaging<Event>> Post([FromBody]FilterPageActionModel body)
         {
             var Events = await _eventRepo.GetsAsync();
+            Events = Events.OrderByDescending(x => x.CreatedDate);
             if (body.KeySearch != null)
             {
                 Events = Events.Where(a => a.Title.Contains(body.KeySearch) || a.Name.Contains(body.KeySearch)).ToList();
             }
             //time out
-            if (body.IsActivated == 1)
-            {
-                Events = Events.Where(a => a.EndTime <= DateTime.Now).ToList();
-            }
+            // if (body.IsActivated == 1)
+            // {
+            //     Events = Events.Where(a => a.EndTime <= DateTime.Now).ToList();
+            // }
             //coming soon
-            if (body.IsActivated == 2)
-            {
-                Events = Events.Where(a => a.EndTime > DateTime.Now && a.StartTime > DateTime.Now).ToList();
-            }
+            // if (body.IsActivated == 2)
+            // {
+            //     Events = Events.Where(a => a.EndTime > DateTime.Now && a.StartTime > DateTime.Now).ToList();
+            // }
             //ongoing
-            if (body.IsActivated == 3)
-            {
-                Events = Events.Where(a => a.EndTime > DateTime.Now && a.StartTime <= DateTime.Now).ToList();
-            }
+            // if (body.IsActivated == 3)
+            // {
+            //     Events = Events.Where(a => a.EndTime > DateTime.Now && a.StartTime <= DateTime.Now).ToList();
+            // }
             var total = Events.Count();
             var ofsset = (body.CurrentPage * body.NumberItemPage) - body.NumberItemPage;
             Events = Events.Skip(ofsset).Take(body.NumberItemPage).ToList();
@@ -94,7 +95,7 @@ namespace HuRe.Controllers
         [HttpGet]
         public async Task<IEnumerable<Event>> GetAll()
         {
-            return (await _eventRepo.GetsAsync()).OrderByDescending(z => z.EndTime).Take(100);
+            return (await _eventRepo.GetsAsync()).OrderByDescending(x => x.CreatedDate).Take(100);
         }
         [HttpGet("{id}")]
         public async Task<Event> Get(long id)
@@ -113,22 +114,23 @@ namespace HuRe.Controllers
         public async Task<IEnumerable<Event>> GetOpeningEvents()
         {
             var events = await _eventRepo.GetsAsync();
-            var timeNow = DateTime.UtcNow.AddHours(7);
-            var opening = events.Where(z => z.StartTime < timeNow && z.EndTime > timeNow).ToList();
-            if (opening.Count() < 3)
-            {
-                var notOpenYet = events.Where(z => z.StartTime >= timeNow || z.EndTime <= timeNow).ToList();
-                foreach (var item in notOpenYet)
-                {
-                    opening.Add(item);
-                }
-                var error = events.Where(z => z.StartTime <= timeNow || z.EndTime >= timeNow).ToList();
-                foreach (var item in error)
-                {
-                    opening.Add(item);
-                }
-            }
-            return opening.Take(3);
+            // var timeNow = DateTime.UtcNow.AddHours(7);
+            // var opening = events.Where(z => z.StartTime < timeNow && z.EndTime > timeNow).ToList();
+            // if (opening.Count() < 3)
+            // {
+            //     var notOpenYet = events.Where(z => z.StartTime >= timeNow || z.EndTime <= timeNow).ToList();
+            //     foreach (var item in notOpenYet)
+            //     {
+            //         opening.Add(item);
+            //     }
+            //     var error = events.Where(z => z.StartTime <= timeNow || z.EndTime >= timeNow).ToList();
+            //     foreach (var item in error)
+            //     {
+            //         opening.Add(item);
+            //     }
+            // }
+            // return opening.Take(3);
+            return events.Take(3);
         }
     }
 }

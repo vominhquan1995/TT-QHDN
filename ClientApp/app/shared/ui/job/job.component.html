@@ -11,12 +11,12 @@
         <p class="mt-0 mb-0 ml-1 d-block col-12">{{ job?.company?.name| limitText:40 }}</p>
       </div>
       <div class="row">
-        <div class="col-12 col-lg-6 hures-job-info ">
+        <div class="col-12 col-lg-12 hures-job-info ">
           <small style="display:block;" class="text-muted m-1">
             <!-- <i class="fa fa-money"></i> -->
             Lương :{{ job?.salary | limitText:39}}</small>
         </div>
-        <div class="col-12 col-lg-6 hures-job-info ">
+        <div class="col-12 col-lg-12 hures-job-info ">
           <small style="display:block;" class="text-muted m-1">
             <!-- <i class="fa fa-clock-o"></i> -->
             Thời gian :{{ job?.deadlineApply | date:'dd/MM/yyyy' }}</small>

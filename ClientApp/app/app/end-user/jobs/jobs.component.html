@@ -26,7 +26,7 @@
             </div>
             <div class="col-12 col-xl-4 col-lg-4">
                 <div *ngIf="jobsHot$" class="jumbotron">
-                    <hure-jobs-container [jobsObserver]="jobsHot$" paging="no" title="{{ isIntership?'Việc thực tập mới nhất':'Việc làm mới nhất'}}"
+                    <hure-jobs-container [jobsObserver]="jobsHot$" paging="no" title="{{ isIntership?'Nổi bật':'Nổi bật'}}"
                         size="small" limit="10"></hure-jobs-container>
                 </div>
             </div>

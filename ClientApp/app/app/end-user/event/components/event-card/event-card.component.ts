@@ -9,20 +9,20 @@ import * as moment from 'moment';
 })
 export class EventCardComponent implements OnInit {
     ngOnInit(): void {
-        if (!moment(this.event.endTime).isAfter(new Date())) {
-            // this.status = "Hết hạn";
+        // if (!moment(this.event.endTime).isAfter(new Date())) {
+        //     // this.status = "Hết hạn";
 
-        } else if (moment(this.event.startTime).isAfter(new Date())) {
-            // this.status = "Sắp diễn ra";
-        } else {
-            // this.status = "Đang diễn ra";
-            this.status = "Hot";
-        }
+        // } else if (moment(this.event.startTime).isAfter(new Date())) {
+        //     // this.status = "Sắp diễn ra";
+        // } else {
+        //     // this.status = "Đang diễn ra";
+        //     this.status = "Hot";
+        // }
     }
-    status: string = '';
+    @Input() status: string;
     currentDate = new Date()
-    constructor(private router: Router) { }
     @Input() event: EventItem;
+    constructor(private router: Router) { }
     goToDetail() {
         if (this.event) {
             this.router.navigate(['events', 'detail', this.event.id.toString()]);

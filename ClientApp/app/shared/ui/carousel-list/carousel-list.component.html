@@ -1,7 +1,7 @@
 <div class="container">
     <div class="app-carousel">
         <ul class="slides row">
-            <li [@itemDis]="item.state" *ngFor="let item of listItem" class="app-carousel-img-container col-12 col-sm-4 col-md-3 col-xl-3 text-center">
+            <li [@itemDis]="item.state" *ngFor="let item of listItem" class="app-carousel-img-container col-12 col-sm-4 col-md-3 col-xl-2 text-center">
                 <a [href]="item?.url">
                     <img [src]="item?.img" onerror="this.src='./resources/logo_default.png'" alt="{{ item?.text }}">
                 </a>

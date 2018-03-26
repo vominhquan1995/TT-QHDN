@@ -14,7 +14,7 @@ namespace HuRe.Models
         public string Place { get; set; }
         public string ImageURL { get; set; }
         public string LinkRegister { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
+        public string RegisterTime { get; set; }
+        public string Time { get; set; }
     }
 }

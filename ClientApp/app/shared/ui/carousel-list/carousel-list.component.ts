@@ -26,7 +26,7 @@ export class CarouselListComponent implements OnInit, AfterViewInit {
     }
 
     @Input() listItem: CarouselItem[]
-    @Input() show: number = 4;
+    @Input() show: number = 6;
     @Input() size: number = 136;
     public static server: string;
     constructor() {

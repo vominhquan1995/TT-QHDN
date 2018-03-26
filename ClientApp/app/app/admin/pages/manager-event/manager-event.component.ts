@@ -51,12 +51,12 @@ export class ManagerEventComponent implements OnInit {
         this._service.getEventPage(body).then(data => {
             this._data = data.data;
             this.totalItem = data.total;
-            this._data.forEach(element => {
-                let status = this.getStatusEvent(element.startTime, element.endTime)
-                element.status = status.status;
-                element.classColor = status.classColor;
-                element.des = status.des;
-            });
+            // this._data.forEach(element => {
+            //     let status = this.getStatusEvent(element.startTime, element.endTime)
+            //     element.status = status.status;
+            //     element.classColor = status.classColor;
+            //     element.des = status.des;
+            // });
             this.isLoading = false;
         })
     }

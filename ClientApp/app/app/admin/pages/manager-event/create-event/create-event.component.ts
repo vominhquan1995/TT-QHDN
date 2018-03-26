@@ -16,8 +16,8 @@ export class CreateEventComponent implements OnInit {
     modalRef: any;
     private ImageURL: string;
     private contentHtml: string;
-    private timeStart: string;
-    private timeEnd: string;
+    // private timeStart: string;
+    // private timeEnd: string;
     //luu loi
     private error = {
         mess: '',
@@ -37,32 +37,32 @@ export class CreateEventComponent implements OnInit {
         this.modalRef = this.modalService.open(this.content, options);
     }
     create(form: any) {
-        if (!moment(this.timeStart).isAfter(new Date())) {
-            this.error.type = "warning";
-            this.error.mess = "Thời gian bắt đầu phải sau hôm nay";
-        } else if (moment(this.timeEnd).isBefore(this.timeStart)) {
-            this.error.type = "warning";
-            this.error.mess = "Thời gian kết thúc phải sau thời gian bắt đầu";
-        } else {
-            let body = {
-                Name: form.value.Name,
-                Title: form.value.Title,
-                ShortDescription: form.value.ShortDescription,
-                ContentHtml: this.contentHtml,
-                Place: form.value.Place,
-                LinkRegister: form.value.LinkRegister,
-                ImageURL: this.ImageURL,
-                StartTime: this.timeStart,
-                EndTime: this.timeEnd
-            }
-            this.service.createEvent(body).then(result => {
-                if (result == true) {
-                    this.showToast('Thành công', 'success', true)
-                } else {
-                    this.showToast('Lỗi xảy ra', 'danger', false)
-                }
-            })
+        // if (!moment(this.timeStart).isAfter(new Date())) {
+        //     this.error.type = "warning";
+        //     this.error.mess = "Thời gian bắt đầu phải sau hôm nay";
+        // } else if (moment(this.timeEnd).isBefore(this.timeStart)) {
+        //     this.error.type = "warning";
+        //     this.error.mess = "Thời gian kết thúc phải sau thời gian bắt đầu";
+        // } else {
+        let body = {
+            Name: form.value.Name,
+            Title: form.value.Title,
+            ShortDescription: form.value.ShortDescription,
+            ContentHtml: this.contentHtml,
+            Place: form.value.Place,
+            LinkRegister: form.value.LinkRegister,
+            ImageURL: this.ImageURL,
+            RegisterTime: form.value.RegisterTime,
+            Time: form.value.Time
         }
+        this.service.createEvent(body).then(result => {
+            if (result == true) {
+                this.showToast('Thành công', 'success', true)
+            } else {
+                this.showToast('Lỗi xảy ra', 'danger', false)
+            }
+        })
+        // }
     }
     showToast(mess: string, type: string, isClose: boolean) {
         this.error.mess = mess;

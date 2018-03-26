@@ -11,7 +11,7 @@
             <div class="col-md-1">
                 <div class="form-group filter">
                     <select class="form-control" [(ngModel)]="numberItemPage" (change)="pageChange()" id="exampleSelect1">
-                      <option [ngValue]="10">10</option>
+                        <option [ngValue]="10">10</option>
                         <option [ngValue]="20">20</option>
                         <option [ngValue]="50">50</option>
                     </select>
@@ -49,10 +49,10 @@
                             <th class="text-nowrap">Tiêu đề</th>
                             <th class="text-nowrap">Mô tả ngắn</th>
                             <th class="text-nowrap">Địa điểm tổ chức</th>
-                            <th class="text-nowrap">Thời gian BĐ</th>
-                            <th class="text-nowrap">Thời gian KT</th>
+                            <th class="text-nowrap">Hạn đăng ký</th>
+                            <th class="text-nowrap">Thời gian diễn ra</th>
                             <th class="text-nowrap">Hình ảnh</th>
-                            <th class="text-nowrap">Tình trạng</th>
+                            <!-- <th class="text-nowrap">Tình trạng</th> -->
                             <th colspan="2" class="text-nowrap">Tác vụ</th>
                         </tr>
                     </thead>
@@ -63,14 +63,14 @@
                             <td class="cell-sm">{{item.title}}</td>
                             <td class="text-truncate">{{item.shortDescription}}</td>
                             <td class="cell-sm">{{item.place}}</td>
-                            <td class="cell-sm">{{item.startTime | date :'dd/MM/yyyy'}}</td>
-                            <td class="cell-sm">{{item.endTime | date :'dd/MM/yyyy'}}</td>
+                            <td class="cell-sm">{{item.registerTime}}</td>
+                            <td class="cell-sm">{{item.time}}</td>
                             <td>
                                 <img class="image" [src]="item.imageURL">
                             </td>
-                            <td>
+                            <!-- <td>
                                 <span [class]="item.classColor" [title]="item.des">{{item.status}}</span>
-                            </td>
+                            </td> -->
                             <td class="tac-vu">
                                 <a (click)="openEdit(item.id)" placement="top" ngbTooltip="Sửa thông tin">
                                     <i class=" fa fa-pencil-square-o " aria-hidden="true "></i>

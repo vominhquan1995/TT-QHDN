@@ -62,3 +62,6 @@ export const Status_Apply = {
     Passed: "passed",
     Failed: "failed"
 }
+export class Value_Number {
+    public static readonly Number_Job_Group = 16
+}

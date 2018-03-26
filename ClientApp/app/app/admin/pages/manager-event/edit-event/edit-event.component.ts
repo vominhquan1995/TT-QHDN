@@ -30,8 +30,8 @@ export class EditEventComponent implements OnInit {
     open(id: number) {
         this.getInfoEvent(id).then(result => {
             this.EventModel = result;
-            this.EventModel.startTime = moment(this.EventModel.startTime).format("YYYY/MM/DD");
-            this.EventModel.endTime = moment(this.EventModel.endTime).format("YYYY/MM/DD");
+            // this.EventModel.startTime = moment(this.EventModel.startTime).format("YYYY/MM/DD");
+            // this.EventModel.endTime = moment(this.EventModel.endTime).format("YYYY/MM/DD");
             let options: NgbModalOptions = {
                 size: 'lg'
             };
@@ -39,18 +39,18 @@ export class EditEventComponent implements OnInit {
         })
     }
     save() {
-        if(moment(this.EventModel.endTime).isBefore(this.EventModel.startTime)) {
-            this.error.type = "warning";
-            this.error.mess = "Thời gian kết thúc phải sau thời gian bắt đầu";
-        } else {
-            this.service.updateEvent(this.EventModel.id, this.EventModel).then(result => {
-                if (result == true) {
-                    this.showToast('Cập nhật thành công', Type_Alert.SUCCESS, true)
-                } else {
-                    this.showToast('Cập nhật không thành công', Type_Alert.DANGER, false)
-                }
-            })
-        }
+        // if(moment(this.EventModel.endTime).isBefore(this.EventModel.startTime)) {
+        //     this.error.type = "warning";
+        //     this.error.mess = "Thời gian kết thúc phải sau thời gian bắt đầu";
+        // } else {
+        this.service.updateEvent(this.EventModel.id, this.EventModel).then(result => {
+            if (result == true) {
+                this.showToast('Cập nhật thành công', Type_Alert.SUCCESS, true)
+            } else {
+                this.showToast('Cập nhật không thành công', Type_Alert.DANGER, false)
+            }
+        })
+        // }
 
     }
     getInfoEvent(id: number) {
@@ -74,10 +74,10 @@ export class EditEventComponent implements OnInit {
             return null
         }, 1000)
     }
-    timeChangeStart(time: any) {
-        this.EventModel.startTime = time;
-    }
-    timeChangeEnd(time: any) {
-        this.EventModel.endTime = time;
-    }
+    // timeChangeStart(time: any) {
+    //     this.EventModel.startTime = time;
+    // }
+    // timeChangeEnd(time: any) {
+    //     this.EventModel.endTime = time;
+    // }
 }

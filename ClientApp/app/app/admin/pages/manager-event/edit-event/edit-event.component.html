@@ -41,12 +41,15 @@
                 <admin-upload-file (uploadSuccess)="EventModel.imageURL=$event" [url]="EventModel.imageURL"></admin-upload-file>
             </div>
             <div class="form-group has-danger">
-                <label class="form-control-label">Hạn nộp hồ sơ</label>
-                <admin-date-picker (timeChange)="timeChangeStart($event)" [currentValue]="EventModel.startTime"></admin-date-picker>
+                <label class="form-control-label">Thời gian đăng ký</label>
+                <!-- <admin-date-picker (timeChange)="timeChangeStart($event)" [currentValue]="EventModel.startTime"></admin-date-picker> -->
+                <input type="text" [(ngModel)]="EventModel.registerTime" name="RegisterTime" class="form-control form-control-warning" id="RegisterTime"
+                    required>
             </div>
             <div class="form-group has-danger">
-                <label class="form-control-label">Ngày kết thúc</label>
-                <admin-date-picker (timeChange)="timeChangeEnd($event)" [currentValue]="EventModel.endTime"></admin-date-picker>
+                <label class="form-control-label">Thời gian diễn ra</label>
+                <!-- <admin-date-picker (timeChange)="timeChangeEnd($event)" [currentValue]="EventModel.endTime"></admin-date-picker> -->
+                <input type="text" [(ngModel)]="EventModel.time" name="Time" class="form-control form-control-warning" id="Time" required>
             </div>
             <hr>
             <ngb-alert [type]="error.type" (close)="error.mess =''" *ngIf="error.mess != ''">{{ error.mess }}</ngb-alert>
