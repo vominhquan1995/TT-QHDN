@@ -19,11 +19,11 @@ export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     forgetForm: FormGroup;
     @Output() close$: EventEmitter<boolean> = new EventEmitter<boolean>()
-    constructor(private fb: FormBuilder, private authSvc: AuthService, 
-        private loadingSvc: LoadingService, private alertSvc:AlertService) {
+    constructor(private fb: FormBuilder, private authSvc: AuthService,
+        private loadingSvc: LoadingService, private alertSvc: AlertService) {
         this.createForm();
     }
-    closeEmitter($event:any){
+    closeEmitter($event: any) {
         this.close()
     }
     close() {
@@ -37,8 +37,7 @@ export class LoginComponent implements OnInit {
         // do stuff
     }
     ngOnInit() {
-      
-     }
+    }
     createForm() {
         this.loginForm = this.fb.group({
             username: new FormControl('', Validators.required),
@@ -48,9 +47,9 @@ export class LoginComponent implements OnInit {
             email: new FormControl('', [Validators.required,
             Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')])
         })
-        
+
     }
-   
+
     async submit() {
         let loginModel = {
             username: this.loginForm.value.username,
@@ -58,10 +57,10 @@ export class LoginComponent implements OnInit {
         }
         try {
             this.loadingSvc.showLoading(true);
-            var isLoggedIn =  await this.authSvc.login(loginModel);
-            if(isLoggedIn){
-                this.alertSvc.show("Thông báo","Đăng nhập thành công");
-            }else{
+            var isLoggedIn = await this.authSvc.login(loginModel);
+            if (isLoggedIn) {
+                this.alertSvc.show("Thông báo", "Đăng nhập thành công");
+            } else {
                 // this.alertSvc.show("Thông báo","Đăng nhập thất bại, vui lòng kiểm tra lại thông tin đăng nhập.","danger");
             }
         } finally {
@@ -69,4 +68,7 @@ export class LoginComponent implements OnInit {
             this.close()
         }
     }
+    // outSide() {
+    //     this.close()
+    // }
 }

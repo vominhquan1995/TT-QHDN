@@ -62,7 +62,7 @@ namespace HuRe.Controllers
         public async Task<object> GetPage(int page)
         {
             var doanhNghieps = await _companiesRepo.GetsAsync();
-            var data = doanhNghieps.OrderByDescending(o => o.Scales).Skip(page * 10).Take(10).ToList();
+            var data = doanhNghieps.OrderByDescending(o => o.CreatedDate).Skip(page * 10).Take(10).ToList();
             return new
             {
                 itemCount = doanhNghieps.Count(),
@@ -87,13 +87,13 @@ namespace HuRe.Controllers
         public async Task<IEnumerable<Company>> GetPage()
         {
             var doanhNghieps = await _companiesRepo.GetsAsync();
-            return doanhNghieps.OrderByDescending(o => o.Scales).Take(5).ToList();
+            return doanhNghieps.OrderByDescending(o => o.CreatedDate).Take(5).ToList();
         }
         [HttpGet("partner")]
         public async Task<IEnumerable<Company>> GetPartner()
         {
             var doanhNghieps = await _companiesRepo.GetsAsync();
-            return doanhNghieps.Where(z => z.IsPartner && z.Status.ToUpper() == "ACTIVE").OrderByDescending(o => o.Scales).Take(10).ToList();
+            return doanhNghieps.Where(z => z.IsPartner && z.Status.ToUpper() == "ACTIVE").OrderByDescending(o => o.CreatedDate).Take(10).ToList();
         }
         [HttpDelete("{id}")]
         public async Task<bool> Delete(long id)
@@ -123,10 +123,11 @@ namespace HuRe.Controllers
         {
             //var total = _companiesRepo.CountAll(form);
             var Companys = await _companiesRepo.GetsAsync();
+            Companys=Companys.OrderByDescending(x => x.CreatedDate);
             //var Companys = await _companiesRepo.GetsAsyncPage(form);
             if (form.KeySearch != null)
             {
-                Companys = Companys.Where(a => a.Name.Contains(form.KeySearch) || a.ShortName.Contains(form.KeySearch)).ToList();
+                Companys = Companys.Where(a => a.Name.Contains(form.KeySearch)).ToList();
             }
             if (form.Status != null)
             {

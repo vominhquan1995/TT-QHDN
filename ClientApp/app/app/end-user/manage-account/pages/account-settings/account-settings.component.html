@@ -161,11 +161,11 @@
         </div>
         <div class="row">
           <div class="col-12 col-md-4 col-lg-3">
-            <strong>Tên viết tắt:</strong>
+            <strong>Lĩnh vực:</strong>
           </div>
           <div class="col-12 col-md-4">
-            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.shortName?.value }}</p>
-            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="shortName">
+            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.jobGroup?.value }}</p>
+            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="jobGroup">
           </div>
         </div>
         <div class="row">
@@ -179,38 +179,56 @@
         </div>
         <div class="row">
           <div class="col-12 col-md-4 col-lg-3">
-            <strong>Số điện thoại:</strong>
+            <strong>Số điện thoại công ty:</strong>
           </div>
           <div class="col-12 col-md-4">
-            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.phoneNumber?.value }}</p>
-            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="phoneNumber">
+            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.phoneCompany?.value }}</p>
+            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="phoneCompany">
           </div>
         </div>
         <div class="row">
           <div class="col-12 col-md-4 col-lg-3">
-            <strong>Website:</strong>
+            <strong>Email:</strong>
           </div>
           <div class="col-12 col-md-4">
-            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.website?.value }}</p>
-            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="website">
+            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.emailCompany?.value }}</p>
+            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="emailCompany">
           </div>
         </div>
         <div class="row">
           <div class="col-12 col-md-4 col-lg-3">
-            <strong>Quy mô:</strong>
+            <strong>Mã số thuế :</strong>
           </div>
           <div class="col-12 col-md-4">
-            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.scales?.value }}</p>
-            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="scales">
+            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.taxCode?.value }}</p>
+            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="taxCode">
           </div>
         </div>
         <div class="row">
           <div class="col-12 col-md-4 col-lg-3">
-            <strong>Giám đốc:</strong>
+            <strong>Người đại diện:</strong>
           </div>
           <div class="col-12 col-md-4">
             <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.representor?.value }}</p>
             <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="representor">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Số điện thoại :</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.phoneRepresentor?.value }}</p>
+            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="phoneRepresentor">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12 col-md-4 col-lg-3">
+            <strong>Email :</strong>
+          </div>
+          <div class="col-12 col-md-4">
+            <p *ngIf="!isCompanyUpdate">{{ companyForm.controls.emailRepresentor?.value }}</p>
+            <input *ngIf="isCompanyUpdate" class="input-group" type="text" formControlName="emailRepresentor">
           </div>
         </div>
       </form>

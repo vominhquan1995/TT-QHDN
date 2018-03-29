@@ -8,7 +8,7 @@ import { DropdownItemComponent } from './dropdownItem/dropdownItem.component';
 })
 export class DropdownComponent implements OnInit, OnChanges {
     ngOnChanges(changes: any): void {
-        if(changes.selectedItem && changes!.selectedItem!.currentValue==null){
+        if (changes.selectedItem && changes!.selectedItem!.currentValue == null) {
             this.selectedItem = null;
         }
     }
@@ -38,5 +38,8 @@ export class DropdownComponent implements OnInit, OnChanges {
         this.selectedItem = item;
     }
     ngOnInit() {
+    }
+    outSide() {
+        this.isActivated = false;
     }
 }

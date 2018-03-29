@@ -35,7 +35,6 @@ export class JobsContainerComponent implements OnInit, OnDestroy, AfterViewInit 
             this.jobs$ = this.jobsObserver.pipe(share())
         }
        }catch(err){
-        //    console.log(err)
        }
     }
 

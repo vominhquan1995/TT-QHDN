@@ -73,12 +73,11 @@ namespace HuRe.Controllers
             Company company = new Company
             {
                 Name = model.CompanyName,
-                Website = model.CompanyWebsite,
                 Status = "waiting",
                 TaxCode = model.TaxCode,
-                Email = model.CompanyEmail,
+                EmailCompany = model.CompanyEmail,
                 Description = model.CompanyDescription,
-                PhoneNumber = model.CompanyPhone,
+                PhoneCompany = model.CompanyPhone,
                 Address = model.CompanyAddress
             };
             bool isCreateCompany = await _companyRepo.AddAsync(company);

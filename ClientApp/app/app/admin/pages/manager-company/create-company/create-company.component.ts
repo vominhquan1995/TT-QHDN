@@ -15,7 +15,7 @@ export class CreateCompanyComponent implements OnInit {
     closeResult: string;
     modalRef: any;
     private ImageURL: string;
-    private isPartner: boolean;
+    private isPartner: boolean = false;
     //luu loi
     private error = {
         mess: '',
@@ -37,15 +37,16 @@ export class CreateCompanyComponent implements OnInit {
     create(form: any) {
         let body = {
             name: form.value.name,
-            shortName: form.value.shortName,
+            JobGroup: form.value.JobGroup,
             Address: form.value.Address,
-            Description: form.value.description,
-            Scales: form.value.Scales,
-            Representor: form.value.Representor,
-            PhoneNumber: form.value.PhoneNumber,
-            Email: form.value.Email,
+            PhoneCompany: form.value.PhoneCompany,
+            EmailCompany: form.value.EmailCompany,
             TaxCode: form.value.TaxCode,
-            Website: form.value.Website,
+            Description: form.value.description,
+            Representor: form.value.Representor,
+            PhoneRepresentor: form.value.PhoneRepresentor,
+            EmailRepresentor: form.value.EmailRepresentor,
+            RepresentorAnother: form.value.RepresentorAnother,
             URLLogo: this.ImageURL,
             IsParner: this.isPartner,
             Status: Status_Job.Active,

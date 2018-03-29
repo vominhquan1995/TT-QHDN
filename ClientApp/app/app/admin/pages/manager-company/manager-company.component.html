@@ -11,7 +11,7 @@
             <div class="col-md-1">
                 <div class="form-group filter">
                     <select class="form-control" [(ngModel)]="numberItemPage" (change)="pageChange()" id="exampleSelect1">
-                      <option [ngValue]="10">10</option>
+                        <option [ngValue]="10">10</option>
                         <option [ngValue]="20">20</option>
                         <option [ngValue]="50">50</option>
                     </select>
@@ -52,13 +52,12 @@
                         <tr>
                             <th class="text-nowrap">STT</th>
                             <th class="text-nowrap">Tên Doanh nghiệp</th>
-                            <th class="text-nowrap">Tên viết tắt</th>
-                            <!-- <th class="text-nowrap">Mô tả</th> -->
-                            <!--<th class="text-nowrap">Địa chỉ</th>-->
-                            <th class="text-nowrap">Quy mô</th>
+                            <!-- <th class="text-nowrap">Lĩnh vực</th> -->
+                            <th class="text-nowrap">Mã số thuế</th>
+                            <th class="text-nowrap">Điện thoại</th>
+                            <th class="text-nowrap">Email</th>
                             <th class="text-nowrap">Người đại diện</th>
-                            <th class="text-nowrap">Số điện thoại</th>
-                            <!-- <th class="text-nowrap">Website</th> -->
+                            <!-- <th class="text-nowrap">Số điện thoại</th> -->
                             <th class="text-nowrap text-center">Logo</th>
                             <th class="text-nowrap">Đối tác</th>
                             <th class="text-nowrap text-center">Tình trạng</th>
@@ -70,20 +69,19 @@
                         <tr *ngFor="let item of _data;let i =index">
                             <td>{{indexRow(i)}}</td>
                             <td class="cell-sm">{{item.name}}</td>
-                            <td class="cell-sm">{{item.shortName}}</td>
-                            <!-- <td class="text-truncate">{{item.description}}</td> -->
-                            <!--<td class="text-truncate">{{item.address}}</td>-->
-                            <td class="cell-sm">{{item.scales}}</td>
+                            <!-- <td class="cell-sm">{{item.jobGroup}}</td> -->
+                            <td class="cell-sm">{{item.taxCode}}</td>
+                            <td class="cell-sm">{{item.phoneCompany}}</td>
+                            <td class="cell-sm">{{item.emailCompany}}</td>
                             <td class="cell-sm">{{item.representor}}</td>
-                            <td class="cell-sm">{{item.phoneNumber}}</td>
-                            <!-- <td class="text-truncate-sm">{{item.website}}</td> -->
+                            <!-- <td class="cell-sm">{{item.phoneRepresentor}}</td> -->
                             <td>
                                 <img class="image" [src]="item.urlLogo">
                             </td>
                             <td class="text-center">
                                 <span>
-                                <i [class.fa-check]="item?.isPartner" class="fa"></i>
-                            </span>
+                                    <i [class.fa-check]="item?.isPartner" class="fa"></i>
+                                </span>
                             </td>
                             <td class="cell-sm text-center">
                                 <span *ngIf="item?.status==Status.Active" class="badge badge-success">Hoạt động</span>

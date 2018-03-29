@@ -6,10 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./overlay.component.scss']
 })
 export class OverlayComponent implements OnInit {
-  @Input() isActivated:boolean=false
+  @Input() isActivated: boolean = false
   constructor() { }
 
   ngOnInit() {
   }
-
 }

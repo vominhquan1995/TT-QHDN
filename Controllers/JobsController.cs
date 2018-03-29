@@ -185,7 +185,7 @@ namespace HuRe.Controllers
             Jobs = Jobs.OrderByDescending(x => x.CreatedDate);
             if (body.KeySearch != null)
             {
-                Jobs = Jobs.Where(a => a.Title.Contains(body.KeySearch) || a.Company.Name.Contains(body.KeySearch) || a.Company.ShortName.Contains(body.KeySearch)).ToList();
+                Jobs = Jobs.Where(a => a.Title.Contains(body.KeySearch) || a.Company.Name.Contains(body.KeySearch)).ToList();
             }
             if (body.Status != null)
             {
